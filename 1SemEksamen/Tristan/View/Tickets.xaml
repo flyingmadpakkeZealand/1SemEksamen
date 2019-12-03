@@ -1,0 +1,53 @@
+﻿<Page
+    x:Class="ragnarock.Tristan.View.Tickets"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ragnarock.Tristan.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <TextBlock Text="Køb billet" FontSize="48" Margin="50,50,50,50" HorizontalAlignment="Center"></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Voksen" Height="250" Width="250" FontSize="48" Margin="50,50,50,50"></Button>
+                <Button Content="Barn" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
+                <Button Content="Pensionist" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+            </StackPanel>
+            <TextBlock Text="Indtast kortoplysninger" FontSize="48" Margin="50,50,50,50" HorizontalAlignment="Center"></TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Kortnummer" Height="50" Width="300" FontSize="36" Margin="50,50,50,50"></TextBlock>
+                    <TextBox Height="50" Width="300" Margin="50,0,50,0"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="CVV" Height="50" Width="100" FontSize="36" Margin="50,50,50,50"></TextBlock>
+                    <TextBox Height="50" Width="100" Margin="50,0,50,0"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Godkend" Height="50" Width="250" FontSize="36" Margin="50,50,50,50"></TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Height="50" Width="100" Content="JA" FontSize="24" Margin="50,0,50,0"></Button>
+                        <Button Height="50" Width="100" Content="NEJ" FontSize="24"></Button>
+                    </StackPanel>
+
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Pris" Height="50" Width="100" FontSize="36" Margin="50,50,50,50"></TextBlock>
+                    <TextBox Height="50" Width="100" Margin="50,0,50,0"></TextBox>
+                </StackPanel>
+            </StackPanel>
+                
+
+        </StackPanel>
+
+
+    </Grid>
+</Page>
