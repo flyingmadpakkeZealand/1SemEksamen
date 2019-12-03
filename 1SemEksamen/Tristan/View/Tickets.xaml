@@ -44,10 +44,6 @@
                     <TextBox Height="50" Width="100" Margin="50,0,50,0"></TextBox>
                 </StackPanel>
             </StackPanel>
-
-
         </StackPanel>
-
-
     </Grid>
 </Page>
