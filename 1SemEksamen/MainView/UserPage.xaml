@@ -5,10 +5,50 @@
     xmlns:local="using:_1SemEksamen.MainView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mainViewModel="using:_1SemEksamen.MainViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.DataContext>
+        <mainViewModel:UserPageVM></mainViewModel:UserPageVM>
+    </Page.DataContext>
+
     <Grid>
+        <SplitView x:Name="UserPageMenu" DisplayMode="CompactOverlay" IsPaneOpen="{Binding MenuVisibility}" CompactPaneLength="50" OpenPaneLength="150">
+            <SplitView.Pane>
+                <StackPanel Background="Gray">
+                    <Button x:Name="HamburgerButton" Command="{Binding PressToggleMenuCommand}" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                            Width="50" Height="50" Background="Transparent"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
+                                Width="50" Height="50" Background="Transparent"/>
+                        <TextBlock Text="Button 1" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
+                                Width="50" Height="50" Background="Transparent"/>
+                        <TextBlock Text="Button 2" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
+                                Width="50" Height="50" Background="Transparent"/>
+                        <TextBlock Text="Button 3" FontSize="18" VerticalAlignment="Center" />
+                    </StackPanel>
+                </StackPanel>
+            </SplitView.Pane>
+            <SplitView.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="127*"/>
+                        <RowDefinition Height="953*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="UserPage" FontSize="54" Foreground="Black"
+                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,377,0,0" Grid.Row="1"/>
+                    <Frame x:Name="Mainframe" Grid.RowSpan="2"/>
+                </Grid>
+            </SplitView.Content>
+
+        </SplitView>
 
     </Grid>
 </Page>

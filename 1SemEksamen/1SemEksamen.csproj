@@ -124,6 +124,7 @@
     <Compile Include="Magnus\View\PianoPage.xaml.cs">
       <DependentUpon>PianoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainViewModel\UserPageVM.cs" />
     <Compile Include="MainView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
