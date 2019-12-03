@@ -8,7 +8,50 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+<Page.Resources>
+    <Style x:Name="WhiteKey" TargetType="Button">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Background" Value="GhostWhite"/>
+    </Style>
+    <Style x:Name="BlackKey" TargetType="Button">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Height" Value="180"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,0,-30,0"/>
+    </Style>
+</Page.Resources>
 
+    <Grid>
+        <Grid x:Name="Piano" Height="320" Width="800">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="PianoColumn"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="1" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="2" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="3" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="4" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="5" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="6" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+            <Button Grid.Column="7" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+
+            <Button Grid.Column="0" Style="{StaticResource BlackKey}"/>
+            <Button Grid.Column="1" Style="{StaticResource BlackKey}"/>
+            <Button Grid.Column="3" Style="{StaticResource BlackKey}"/>
+            <Button Grid.Column="4" Style="{StaticResource BlackKey}"/>
+            <Button Grid.Column="5" Style="{StaticResource BlackKey}"/>
+
+
+
+        </Grid>
     </Grid>
 </Page>

@@ -13,5 +13,10 @@ namespace _1SemEksamen.MainView
         {
             this.InitializeComponent();
         }
+
+        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UserPage));
+        }
     }
 }
