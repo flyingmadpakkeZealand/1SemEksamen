@@ -126,6 +126,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sebastian\Class1.cs" />
+    <Compile Include="Sebastian\Class2.cs" />
     <Compile Include="Tristan\Class1.cs" />
     <Compile Include="Tristan\View\Tickets.xaml.cs">
       <DependentUpon>Tickets.xaml</DependentUpon>
