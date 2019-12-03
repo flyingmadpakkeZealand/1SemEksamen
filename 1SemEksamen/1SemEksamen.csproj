@@ -128,6 +128,9 @@
     <Compile Include="Sebastian\Class1.cs" />
     <Compile Include="Sebastian\Class2.cs" />
     <Compile Include="Tristan\Class1.cs" />
+    <Compile Include="Tristan\View\Tickets.xaml.cs">
+      <DependentUpon>Tickets.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -152,6 +155,10 @@
     <Page Include="MainView\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Tristan\View\Tickets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
