@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _1SemEksamen.Sebastian
 {
-    class Class1
+    class Class2
     {
         //test
     }
