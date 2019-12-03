@@ -8,6 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Text="Køb billet" FontSize="48" Margin="50,50,50,50" HorizontalAlignment="Center"></TextBlock>
@@ -15,8 +16,10 @@
                 <Button Content="Voksen" Height="250" Width="250" FontSize="48" Margin="50,50,50,50"></Button>
                 <Button Content="Barn" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
                 <Button Content="Pensionist" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
+                <Button Content="Kort eller student" Height="250" Width="250" FontSize="24" Margin="50,50,50,50" ></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
                 <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
                 <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
                 <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
