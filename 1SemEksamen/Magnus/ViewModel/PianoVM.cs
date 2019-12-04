@@ -30,7 +30,7 @@ namespace _1SemEksamen.Magnus.ViewModel
         {
             PianoVmHandler = new PianoVMHandler(this);
             _piano = new Piano(); //Careful, as of now the constructor of piano has asynchronous behaviour. It will give control back potentially before _piano is in a valid state. Use loading bar.
-            _pressPlayPianoNoteCommand = new RelayCommand(PianoVmHandler.playPianoNote);
+            _pressPlayPianoNoteCommand = new RelayCommand(PianoVmHandler.playPianoNote); //PianoVM has to do this before it returns control, if it could return control before initializing the command, the command would actually have to be updated with OnPropertyChanged. 
         }
 
         private RelayCommand _pressPlayPianoNoteCommand;
@@ -39,35 +39,34 @@ namespace _1SemEksamen.Magnus.ViewModel
         {
             get { return _pressPlayPianoNoteCommand; }
         }
-                
-        //private Visibility _loadingVisibility;
 
-        //public Visibility LoadingVisibility
-        //{
-        //    get { return _loadingVisibility; }
-        //    set
-        //    {
-        //        _loadingVisibility = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+        private Visibility _loadingVisibility;
 
-        //private int _progressBarStatus;
+        public Visibility LoadingVisibility
+        {
+            get { return _loadingVisibility; }
+            set
+            {
+                _loadingVisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
-        //public int ProgressBarStatus
-        //{
-        //    get { return _progressBarStatus; }
-        //    set
-        //    {
-        //        _progressBarStatus = value;
-        //        OnPropertyChanged();
-        //        if (value == 100)
-        //        {
-        //            LoadingVisibility = Visibility.Collapsed;
-        //        }
-        //    }
-        //}
+        private int _progressBarStatus;
 
+        public int ProgressBarStatus
+        {
+            get { return _progressBarStatus; }
+            set
+            {
+                _progressBarStatus = value;
+                OnPropertyChanged();
+                if (value == 100)
+                {
+                    LoadingVisibility = Visibility.Collapsed;
+                }
+            }
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -11,11 +11,18 @@ namespace _1SemEksamen.Magnus.Handler
 {
     public class PianoVMHandler
     {
+        private static PianoVM _staticPianoVm = null;
+
+        public static int ProgressBar
+        {
+            set { _staticPianoVm.ProgressBarStatus = value; }
+        }
 
         public PianoVM PianoVm { get; set; }
 
         public PianoVMHandler(PianoVM pianoVM)
         {
+            _staticPianoVm = pianoVM;
             PianoVm = pianoVM;
         }
 

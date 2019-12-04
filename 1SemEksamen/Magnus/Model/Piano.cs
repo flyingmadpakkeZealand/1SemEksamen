@@ -12,6 +12,7 @@ using Windows.Storage;
 using Windows.UI.Xaml;
 using _1SemEksamen.Annotations;
 using _1SemEksamen.Common;
+using _1SemEksamen.Magnus.Handler;
 
 namespace _1SemEksamen.Magnus.Model
 {
@@ -45,11 +46,12 @@ namespace _1SemEksamen.Magnus.Model
         private async void LoadFolderTask()
         {
             _commonFolder = await Package.Current.InstalledLocation.GetFolderAsync("Assets");
-            //Task test = Task.Run(() =>
-            //{
-            //    Thread.Sleep(1000);
-            //});
-            //await test;
+            PianoVMHandler.ProgressBar = 33;
+            Task test = Task.Run(() => //Simulated loading time.
+            {
+                Thread.Sleep(1000);
+            });
+            await test;
             MusicalNote.SoundFilesFolder = _commonFolder;
             for (int i = 0; i < 12; i++) //This could probably be a task.
             {

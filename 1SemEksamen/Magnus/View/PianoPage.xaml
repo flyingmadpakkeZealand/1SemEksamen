@@ -58,8 +58,8 @@
 
 
         </Grid>
-        <Grid Visibility="Collapsed" Background="GhostWhite">
-            <ProgressBar Value="0" Height="10" Width="100"/>
+        <Grid Visibility="{Binding LoadingVisibility}" Background="GhostWhite">
+            <ProgressBar Value="{Binding ProgressBarStatus}" Height="10" Width="100"/>
         </Grid>
     </Grid>
 </Page>

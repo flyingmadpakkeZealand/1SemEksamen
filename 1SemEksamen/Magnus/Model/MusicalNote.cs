@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
+using _1SemEksamen.Magnus.Handler;
 
 namespace _1SemEksamen.Magnus.Model
 {
@@ -41,12 +42,14 @@ namespace _1SemEksamen.Magnus.Model
         private async void LoadSoundFileTask(string note)
         {
             _soundFile = await _soundFilesFolder.GetFileAsync(note + ".wav");
-            //Task test = Task.Run(() =>
-            //{
-            //    Thread.Sleep(3000);
-            //});
-            //await test;
+            PianoVMHandler.ProgressBar = 66;
+            Task test = Task.Run(() => //Simulated loading time.
+            {
+                Thread.Sleep(3000);
+            });
+            await test;
             _stream = await _soundFile.OpenAsync(FileAccessMode.Read);
+            PianoVMHandler.ProgressBar = 100;
         }
 
         public void PlayNote()
