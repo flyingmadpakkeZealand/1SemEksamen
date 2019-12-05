@@ -37,11 +37,13 @@ namespace _1SemEksamen.Magnus.Model
         private StorageFolder _commonFolder = null;
         private List<MusicalNote> _musicalNotes;
         private List<Chord> _chords;
+        private List<Melody> _melodies;
 
         public Piano()
         {
             _musicalNotes = new List<MusicalNote>();
             _chords = new List<Chord>();
+            _melodies = new List<Melody>();
             LoadFolderTask(); //Only allow constructor to return control if you have a working loading bar that "blocks" view until all tasks have completed.
         }
 
@@ -54,8 +56,13 @@ namespace _1SemEksamen.Magnus.Model
                 Thread.Sleep(1000);
             });
             await test;
-            MusicalNote.SoundFilesFolder = _commonFolder;
-            
+            SoundFiles.SoundFilesFolder = _commonFolder;
+
+            _melodies.Add(new Melody("Melody1")); //Update progress bar, this isn't accounted for when loading.
+            _melodies.Add(new Melody("Melody2"));
+            _melodies.Add(new Melody("Melody3"));
+            _melodies.Add(new Melody("Melody4"));
+
             _chords.Add(new Chord(new List<MusicalNote>(){new MusicalNote(MusicalNoteNames.C),new MusicalNote(MusicalNoteNames.E),new MusicalNote(MusicalNoteNames.G)}));
             _chords.Add(new Chord(new List<MusicalNote>() { new MusicalNote(MusicalNoteNames.A), new MusicalNote(MusicalNoteNames.C), new MusicalNote(MusicalNoteNames.E) }));
             _chords.Add(new Chord(new List<MusicalNote>() { new MusicalNote(MusicalNoteNames.G), new MusicalNote(MusicalNoteNames.H), new MusicalNote(MusicalNoteNames.D) }));
@@ -64,6 +71,8 @@ namespace _1SemEksamen.Magnus.Model
             {
                 _musicalNotes.Add(new MusicalNote((MusicalNoteNames)i));
             }
+
+            PianoVMHandler.ProgressBar = PianoVMHandler.ProgressBar + 1;
         }
         /*
          Allowing your default constructor to return control creates a whole bunch of problems, luckily it seems that some of these can be prevented
@@ -80,6 +89,11 @@ namespace _1SemEksamen.Magnus.Model
         public void PlayPianoChord(int chordToPlay)
         {
             _chords[chordToPlay].PlayChord();
+        }
+
+        public void PlayPianoMelody(int melodyToPlay)
+        {
+            _melodies[melodyToPlay].PlayMelody();
         }
     }
 }

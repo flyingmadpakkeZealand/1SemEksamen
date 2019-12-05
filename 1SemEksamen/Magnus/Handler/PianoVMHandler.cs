@@ -16,6 +16,7 @@ namespace _1SemEksamen.Magnus.Handler
         public static int ProgressBar
         {
             set { _staticPianoVm.ProgressBarStatus = value; }
+            get { return _staticPianoVm.ProgressBarStatus; }
         }
 
         public PianoVM PianoVm { get; set; }
@@ -34,6 +35,11 @@ namespace _1SemEksamen.Magnus.Handler
         public void PlayPianoChord()
         {
             PianoVm.Piano.PlayPianoChord(Convert.ToInt32(RelayCommand.ObjectParameter.ToString()));
+        }
+
+        public void PlayPianoMelody()
+        {
+            PianoVm.Piano.PlayPianoMelody(Convert.ToInt32(RelayCommand.ObjectParameter.ToString()));
         }
     }
 }

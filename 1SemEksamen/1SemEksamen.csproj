@@ -122,8 +122,10 @@
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Magnus\Handler\PianoVMHandler.cs" />
     <Compile Include="Magnus\Model\Chord.cs" />
+    <Compile Include="Magnus\Model\Melody.cs" />
     <Compile Include="Magnus\Model\MusicalNote.cs" />
     <Compile Include="Magnus\Model\Piano.cs" />
+    <Compile Include="Magnus\Model\SoundFiles.cs" />
     <Compile Include="Magnus\ViewModel\PianoVM.cs" />
     <Compile Include="Magnus\View\PianoPage.xaml.cs">
       <DependentUpon>PianoPage.xaml</DependentUpon>
@@ -165,6 +167,10 @@
     <Content Include="Assets\Gis.wav" />
     <Content Include="Assets\H.wav" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Melody1.wav" />
+    <Content Include="Assets\Melody2.wav" />
+    <Content Include="Assets\Melody3.wav" />
+    <Content Include="Assets\Melody4.wav" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />

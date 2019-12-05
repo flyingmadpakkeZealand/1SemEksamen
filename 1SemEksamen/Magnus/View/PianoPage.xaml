@@ -29,6 +29,7 @@
 </Page.Resources>
 
     <Grid>
+        <TextBlock Text="{Binding ProgressBarStatus}"/> <!-- Debug loading bar status, should always display 100 in app -->
         <StackPanel Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" Text="Click with the mouse or use: 'AWSEDFTGYHUJ' on your keyboard to play music!"/>
             <Grid x:Name="Piano" Height="320" Width="800">
@@ -112,6 +113,13 @@
                 <Button Content="C" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="0"/>
                 <Button Content="Am" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="1"/>
                 <Button Content="G" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="2"/>
+                
+            </StackPanel>
+            <StackPanel Spacing="20" Orientation="Horizontal">
+                <Button Content="Melody1" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="0"/>
+                <Button Content="Melody2" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="1"/>
+                <Button Content="Melody3" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="2"/>
+                <Button Content="Melody4" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="3"/>
             </StackPanel>
         </StackPanel>
         <Grid Visibility="{Binding LoadingVisibility}" Background="GhostWhite">

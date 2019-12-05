@@ -11,19 +11,19 @@ using _1SemEksamen.Magnus.Handler;
 
 namespace _1SemEksamen.Magnus.Model
 {
-    public class MusicalNote
+    public class MusicalNote : SoundFiles
     {
-        private static StorageFolder _soundFilesFolder = null;
+        //private static StorageFolder _soundFilesFolder = null;
 
-        public static StorageFolder SoundFilesFolder
-        {
-            get { return _soundFilesFolder; }
-            set { _soundFilesFolder = value; }
-        }
+        //public static StorageFolder SoundFilesFolder
+        //{
+        //    get { return _soundFilesFolder; }
+        //    set { _soundFilesFolder = value; }
+        //}
 
-        private StorageFile _soundFile;
-        private MediaElement _soundMediaElement;
-        private IRandomAccessStream _stream;
+        //private StorageFile _soundFile;
+        //private MediaElement _soundMediaElement;
+        //private IRandomAccessStream _stream;
 
         public MusicalNote(Piano.MusicalNoteNames note)
         {
@@ -45,7 +45,7 @@ namespace _1SemEksamen.Magnus.Model
         {
             _soundFile = await _soundFilesFolder.GetFileAsync(note + ".wav");
             
-                PianoVMHandler.ProgressBar = 66;
+                //PianoVMHandler.ProgressBar = 66;
             
             Task test = Task.Run(() => //Simulated loading time.
             {
@@ -53,12 +53,15 @@ namespace _1SemEksamen.Magnus.Model
             });
             await test;
             _stream = await _soundFile.OpenAsync(FileAccessMode.Read);
-            _hitCounter++;
-            if (_hitCounter==12)
-            {
-                PianoVMHandler.ProgressBar = 100;
-            }
-            
+
+            PianoVMHandler.ProgressBar = PianoVMHandler.ProgressBar + 2;
+
+            //_hitCounter++;
+            //if (_hitCounter==21)
+            //{
+            //    PianoVMHandler.ProgressBar = 100;
+            //}
+
         }
         /*Bug: Fixed - QuickFix (Probably not long term solution)
          Because the app uses a loop to initialize multiple MusicalNote objects, a task is started each time it enters LoadSoundFileTask.
