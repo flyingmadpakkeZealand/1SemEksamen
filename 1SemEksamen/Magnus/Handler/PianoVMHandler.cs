@@ -26,9 +26,14 @@ namespace _1SemEksamen.Magnus.Handler
             PianoVm = pianoVM;
         }
 
-        public void playPianoNote()
+        public void PlayPianoNote()
         {
             PianoVm.Piano.PlayPianoNote(Convert.ToInt32(RelayCommand.ObjectParameter.ToString()));
+        }
+
+        public void PlayPianoChord()
+        {
+            PianoVm.Piano.PlayPianoChord(Convert.ToInt32(RelayCommand.ObjectParameter.ToString()));
         }
     }
 }

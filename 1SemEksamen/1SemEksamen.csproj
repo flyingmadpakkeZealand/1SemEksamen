@@ -121,6 +121,7 @@
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Magnus\Handler\PianoVMHandler.cs" />
+    <Compile Include="Magnus\Model\Chord.cs" />
     <Compile Include="Magnus\Model\MusicalNote.cs" />
     <Compile Include="Magnus\Model\Piano.cs" />
     <Compile Include="Magnus\ViewModel\PianoVM.cs" />

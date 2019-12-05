@@ -44,10 +44,9 @@ namespace _1SemEksamen.Magnus.Model
         private async void LoadSoundFileTask(string note)
         {
             _soundFile = await _soundFilesFolder.GetFileAsync(note + ".wav");
-            if (_hitCounter==12)
-            {
+            
                 PianoVMHandler.ProgressBar = 66;
-            }
+            
             Task test = Task.Run(() => //Simulated loading time.
             {
                 Thread.Sleep(3000);

@@ -36,10 +36,12 @@ namespace _1SemEksamen.Magnus.Model
 
         private StorageFolder _commonFolder = null;
         private List<MusicalNote> _musicalNotes;
+        private List<Chord> _chords;
 
         public Piano()
         {
             _musicalNotes = new List<MusicalNote>();
+            _chords = new List<Chord>();
             LoadFolderTask(); //Only allow constructor to return control if you have a working loading bar that "blocks" view until all tasks have completed.
         }
 
@@ -53,6 +55,11 @@ namespace _1SemEksamen.Magnus.Model
             });
             await test;
             MusicalNote.SoundFilesFolder = _commonFolder;
+            
+            _chords.Add(new Chord(new List<MusicalNote>(){new MusicalNote(MusicalNoteNames.C),new MusicalNote(MusicalNoteNames.E),new MusicalNote(MusicalNoteNames.G)}));
+            _chords.Add(new Chord(new List<MusicalNote>() { new MusicalNote(MusicalNoteNames.A), new MusicalNote(MusicalNoteNames.C), new MusicalNote(MusicalNoteNames.E) }));
+            _chords.Add(new Chord(new List<MusicalNote>() { new MusicalNote(MusicalNoteNames.G), new MusicalNote(MusicalNoteNames.H), new MusicalNote(MusicalNoteNames.D) }));
+
             for (int i = 0; i < 12; i++) //This could probably be a task.
             {
                 _musicalNotes.Add(new MusicalNote((MusicalNoteNames)i));
@@ -70,5 +77,9 @@ namespace _1SemEksamen.Magnus.Model
             _musicalNotes[noteToPlay].PlayNote();
         }
 
+        public void PlayPianoChord(int chordToPlay)
+        {
+            _chords[chordToPlay].PlayChord();
+        }
     }
 }

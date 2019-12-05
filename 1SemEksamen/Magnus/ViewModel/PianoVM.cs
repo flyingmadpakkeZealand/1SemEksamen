@@ -30,8 +30,17 @@ namespace _1SemEksamen.Magnus.ViewModel
         {
             PianoVmHandler = new PianoVMHandler(this);
             _piano = new Piano(); //Careful, as of now the constructor of piano has asynchronous behaviour. It will give control back potentially before _piano is in a valid state. Use loading bar.
-            _pressPlayPianoNoteCommand = new RelayCommand(PianoVmHandler.playPianoNote); //PianoVM has to do this before it returns control, if it could return control before initializing the command, the command would actually have to be updated with OnPropertyChanged. 
+            _pressPlayPianoNoteCommand = new RelayCommand(PianoVmHandler.PlayPianoNote); //PianoVM has to do this before it returns control, if it could return control before initializing the command, the command would actually have to be updated with OnPropertyChanged. 
+            _pressPlayPianoChordCommand = new RelayCommand(PianoVmHandler.PlayPianoChord);
         }
+
+        private RelayCommand _pressPlayPianoChordCommand;
+
+        public ICommand PressPlayPianoChordCommand
+        {
+            get { return _pressPlayPianoChordCommand; }
+        }
+
 
         private RelayCommand _pressPlayPianoNoteCommand;
 

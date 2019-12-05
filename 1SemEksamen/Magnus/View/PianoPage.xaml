@@ -108,6 +108,11 @@
 
 
             </Grid>
+            <StackPanel Spacing="20" Orientation="Horizontal">
+                <Button Content="C" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="0"/>
+                <Button Content="Am" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="1"/>
+                <Button Content="G" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="2"/>
+            </StackPanel>
         </StackPanel>
         <Grid Visibility="{Binding LoadingVisibility}" Background="GhostWhite">
             <ProgressBar Value="{Binding ProgressBarStatus}" Height="10" Width="100"/>
