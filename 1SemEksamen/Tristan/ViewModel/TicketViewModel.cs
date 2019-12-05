@@ -19,7 +19,7 @@ using Tickets = _1SemEksamen.Tristan.View.Tickets;
 
 namespace _1SemEksamen.Tristan.ViewModel
 {
-    class TicketViewModel:INotifyPropertyChanged
+    public class TicketViewModel:INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
