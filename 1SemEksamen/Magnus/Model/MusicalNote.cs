@@ -39,8 +39,6 @@ namespace _1SemEksamen.Magnus.Model
         //    _stream = null;
         //}
 
-        private static int _hitCounter = 0;
-
         private async void LoadSoundFileTask(string note)
         {
             _soundFile = await _soundFilesFolder.GetFileAsync(note + ".wav");
