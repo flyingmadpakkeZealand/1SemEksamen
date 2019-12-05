@@ -52,6 +52,19 @@ namespace _1SemEksamen.Magnus.ViewModel
             }
         }
 
+        private bool _enableButtons;
+
+        public bool EnableButtons
+        {
+            get { return _enableButtons; }
+            set
+            {
+                _enableButtons = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         private int _progressBarStatus;
 
         public int ProgressBarStatus
@@ -64,6 +77,7 @@ namespace _1SemEksamen.Magnus.ViewModel
                 if (value == 100)
                 {
                     LoadingVisibility = Visibility.Collapsed;
+                    EnableButtons = true;
                 }
             }
         }
