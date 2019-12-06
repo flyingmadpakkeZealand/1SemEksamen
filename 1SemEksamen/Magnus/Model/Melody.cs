@@ -25,10 +25,18 @@ namespace _1SemEksamen.Magnus.Model
         //private MediaElement _melodyMediaElement;
         //private IRandomAccessStream _stream;
 
+        public string MelodyName { get; set; }
+
+        public MediaElement OneMelody
+        {
+            get { return _soundMediaElement; }
+        }
+
         public Melody(string melody)
         {
             _soundMediaElement = new MediaElement();
-            _soundMediaElement.AutoPlay = true;
+            _soundMediaElement.AutoPlay = false;
+            MelodyName = melody;
             LoadSoundFileTask(melody);
         }
 
@@ -37,12 +45,13 @@ namespace _1SemEksamen.Magnus.Model
             _soundFile = await _soundFilesFolder.GetFileAsync(melody + ".wav");
 
             _stream = await _soundFile.OpenAsync(FileAccessMode.Read);
+            _soundMediaElement.SetSource(_stream, _soundFile.ContentType);
             PianoVMHandler.ProgressBar = PianoVMHandler.ProgressBar + 6;
         }
 
-        public void PlayMelody()
-        {
-            _soundMediaElement.SetSource(_stream,_soundFile.ContentType);
-        }
+        //public void PlayMelody()
+        //{
+        //    _soundMediaElement.SetSource(_stream,_soundFile.ContentType);
+        //}
     }
 }

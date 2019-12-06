@@ -25,6 +25,18 @@ namespace _1SemEksamen.Magnus.ViewModel
             get { return _piano; }
         }
 
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                _selectedIndex = value;
+                _pressPlayPianoMelodyCommand.RaiseCanExecuteChanged();
+            }
+        }
+
 
         public PianoVM()
         {
@@ -32,16 +44,16 @@ namespace _1SemEksamen.Magnus.ViewModel
             _piano = new Piano(); //Careful, as of now the constructor of piano has asynchronous behaviour. It will give control back potentially before _piano is in a valid state. Use loading bar.
             _pressPlayPianoNoteCommand = new RelayCommand(PianoVmHandler.PlayPianoNote); //PianoVM has to do this before it returns control, if it could return control before initializing the command, the command would actually have to be updated with OnPropertyChanged. 
             _pressPlayPianoChordCommand = new RelayCommand(PianoVmHandler.PlayPianoChord);
-            _pressPlayPianoMelodyCommand = new RelayCommand(PianoVmHandler.PlayPianoMelody);
+            _pressPlayPianoMelodyCommand = new RelayCommand(PianoVmHandler.PlayPianoMelody, PianoVmHandler.MelodyIsSelected);
         }
 
+        //Commands
         private RelayCommand _pressPlayPianoMelodyCommand;
 
         public ICommand PressPlayPianoMelodyCommand
         {
             get { return _pressPlayPianoMelodyCommand; }
         }
-
 
         private RelayCommand _pressPlayPianoChordCommand;
 
@@ -58,6 +70,8 @@ namespace _1SemEksamen.Magnus.ViewModel
             get { return _pressPlayPianoNoteCommand; }
         }
 
+
+        //Loading logic
         private Visibility _loadingVisibility;
 
         public Visibility LoadingVisibility
@@ -96,6 +110,8 @@ namespace _1SemEksamen.Magnus.ViewModel
                 {
                     LoadingVisibility = Visibility.Collapsed;
                     EnableButtons = true;
+                    SelectedIndex = -1;
+                    OnPropertyChanged(nameof(Piano));
                 }
             }
         }

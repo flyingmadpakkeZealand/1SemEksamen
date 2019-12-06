@@ -39,7 +39,12 @@ namespace _1SemEksamen.Magnus.Handler
 
         public void PlayPianoMelody()
         {
-            PianoVm.Piano.PlayPianoMelody(Convert.ToInt32(RelayCommand.ObjectParameter.ToString()));
+            PianoVm.Piano.PlayPianoMelody(PianoVm.SelectedIndex);
+        }
+
+        public bool MelodyIsSelected()
+        {
+            return PianoVm.SelectedIndex != -1;
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Windows.ApplicationModel;
 using Windows.Storage;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using _1SemEksamen.Annotations;
 using _1SemEksamen.Common;
 using _1SemEksamen.Magnus.Handler;
@@ -38,12 +39,14 @@ namespace _1SemEksamen.Magnus.Model
         private List<MusicalNote> _musicalNotes;
         private List<Chord> _chords;
         private List<Melody> _melodies;
+        private MediaElement _melodyPlayer;
 
         public Piano()
         {
             _musicalNotes = new List<MusicalNote>();
             _chords = new List<Chord>();
             _melodies = new List<Melody>();
+            _melodyPlayer = new MediaElement();
             LoadFolderTask(); //Only allow constructor to return control if you have a working loading bar that "blocks" view until all tasks have completed.
         }
 
@@ -58,7 +61,7 @@ namespace _1SemEksamen.Magnus.Model
             await test;
             SoundFiles.SoundFilesFolder = _commonFolder;
 
-            _melodies.Add(new Melody("Melody1")); //Update progress bar, this isn't accounted for when loading.
+            _melodies.Add(new Melody("Melody1"));
             _melodies.Add(new Melody("Melody2"));
             _melodies.Add(new Melody("Melody3"));
             _melodies.Add(new Melody("Melody4"));
@@ -67,7 +70,7 @@ namespace _1SemEksamen.Magnus.Model
             _chords.Add(new Chord(new List<MusicalNote>() { new MusicalNote(MusicalNoteNames.A), new MusicalNote(MusicalNoteNames.C), new MusicalNote(MusicalNoteNames.E) }));
             _chords.Add(new Chord(new List<MusicalNote>() { new MusicalNote(MusicalNoteNames.G), new MusicalNote(MusicalNoteNames.H), new MusicalNote(MusicalNoteNames.D) }));
 
-            for (int i = 0; i < 12; i++) //This could probably be a task.
+            for (int i = 0; i < 12; i++)
             {
                 _musicalNotes.Add(new MusicalNote((MusicalNoteNames)i));
             }
@@ -81,6 +84,11 @@ namespace _1SemEksamen.Magnus.Model
          order they must follow, inside an async method, see LoadFolderTask or async methods in MusicalNote.
          */
 
+        public List<Melody> Melodies
+        {
+            get { return _melodies; }
+        }
+
         public void PlayPianoNote(int noteToPlay)
         {
             _musicalNotes[noteToPlay].PlayNote();
@@ -93,7 +101,9 @@ namespace _1SemEksamen.Magnus.Model
 
         public void PlayPianoMelody(int melodyToPlay)
         {
-            _melodies[melodyToPlay].PlayMelody();
+            _melodyPlayer.Stop();
+            _melodyPlayer = _melodies[melodyToPlay].OneMelody;
+            _melodyPlayer.Play();
         }
     }
 }
