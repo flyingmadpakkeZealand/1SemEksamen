@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="_1SemEksamen.Sebastian.View.DrinksList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_1SemEksamen.Sebastian.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:_1SemEksamen.Sebastian.ViewModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <viewModel:CatalogVM></viewModel:CatalogVM>
+    </Page.DataContext>
+
+    <StackPanel Spacing="50">
+        <StackPanel Orientation="Horizontal" Height="80">
+            <Button Content="Hovedmenu" Height="90" Width="120" Click="ButtonBase_OnClick"/>
+            <Button Content="Mad" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick2"/>
+            <TextBlock Text="DRIKKE" Margin="367,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Britannic Bold" FontSize="50" FontWeight="Bold"/>
+            <Button Content="Indkøbskurv" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="410,0,0,0" Height="90" Width="110" Click="ButtonBase_OnClick3"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <ListView ItemsSource="{Binding DrinkCatalog.Menu}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="500" Padding="0,0,0,0">
+                            <TextBlock Text="{Binding Size}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Name}" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                            <TextBox Text="{Binding Amount}" Width="30" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"/>
+
+                        </StackPanel>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+            <StackPanel VerticalAlignment="Stretch" Spacing="10" Width="153">
+                <TextBlock Text="{Binding SelectedItem.Name}" FontSize="35" HorizontalAlignment="Center"/>
+                <StackPanel>
+                    <TextBlock Text="{Binding SelectedItem.Size}"/>
+                    <TextBlock Text="{Binding SelectedItem.Amount}"/>
+                    <TextBlock Text="{Binding SelectedItem.Price}"/>
+                    <StackPanel/>
+                    <StackPanel Orientation="Horizontal" Spacing="40">
+                        <Button Content="MINUS"  Command="{Binding DecreaseAmountCommand}"/>
+                        <Button Content="PLUS" Command="{Binding IncreaseAmountCommand}"/>
+
+                    </StackPanel>
+                    <Button Content="Tilføj til kurv" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding AddItemToCartCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+
+</Page>
