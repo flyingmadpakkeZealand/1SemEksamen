@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using _1SemEksamen.MainView;
+using _1SemEksamen.Tristan.View;
 
 namespace _1SemEksamen
 {

@@ -5,43 +5,49 @@
     xmlns:local="using:_1SemEksamen.Tristan.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:_1SemEksamen.Tristan.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+<Page.DataContext>
+        <viewModel:TicketViewModel></viewModel:TicketViewModel>
+</Page.DataContext>
 
     <Grid>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Text="Køb billet" FontSize="48" Margin="50,50,50,50" HorizontalAlignment="Center"></TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Voksen" Height="250" Width="250" FontSize="48" Margin="50,50,50,50"></Button>
-                <Button Content="Barn" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
-                <Button Content="Pensionist" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
+                <Button CommandParameter="0" Command="{Binding AddCommand}" Content="Voksen" Height="250" Width="250" FontSize="48" Margin="50,50,50,50"></Button>
+                <Button CommandParameter="1" Command="{Binding AddCommand}" Content="Barn" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
+                <Button CommandParameter="2" Command="{Binding AddCommand}" Content="Pensionist" Height="250" Width="250" FontSize="48" Margin="50,50,50,50" ></Button>
+                <Button CommandParameter="3" Command="{Binding AddCommand}" Content="Kort eller student" Height="250" Width="250" FontSize="24" Margin="50,50,50,50" ></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
-                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
-                <TextBlock Text="Antal: " Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+                <TextBlock Text="{Binding TicketObjekt.Voksen}" Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+                <TextBlock Text="{Binding TicketObjekt.Barn}" Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+                <TextBlock Text="{Binding TicketObjekt.Pensionist}" Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
+                <TextBlock Text="{Binding TicketObjekt.KortEllerStudent}" Width="250" Height="50" FontSize="36" Margin="50,0,50,0"></TextBlock>
             </StackPanel>
             <TextBlock Text="Indtast kortoplysninger" FontSize="48" Margin="50,50,50,50" HorizontalAlignment="Center"></TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Kortnummer" Height="50" Width="300" FontSize="36" Margin="50,50,50,50"></TextBlock>
-                    <TextBox Height="50" Width="300" Margin="50,0,50,0"></TextBox>
+                    <TextBox Height="50" Width="300" Margin="50,0,50,0" FontSize="24"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="CVV" Height="50" Width="100" FontSize="36" Margin="50,50,50,50"></TextBlock>
-                    <TextBox Height="50" Width="100" Margin="50,0,50,0"></TextBox>
+                    <TextBox Height="50" Width="100" Margin="50,0,50,0" FontSize="24"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Godkend" Height="50" Width="250" FontSize="36" Margin="50,50,50,50"></TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <Button Height="50" Width="100" Content="JA" FontSize="24" Margin="50,0,50,0"></Button>
-                        <Button Height="50" Width="100" Content="NEJ" FontSize="24"></Button>
+                        <Button Height="50" Width="100" Command="{Binding JaCommand}" Content="JA" FontSize="24" Margin="50,0,50,0"></Button>
+                        <Button Height="50" Command="{Binding NejCommand}" Width="100" Content="NEJ" FontSize="24"></Button>
                     </StackPanel>
 
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Pris" Height="50" Width="100" FontSize="36" Margin="50,50,50,50"></TextBlock>
-                    <TextBox Height="50" Width="100" Margin="50,0,50,0"></TextBox>
+                    <TextBox Text="{Binding TicketObjekt.TotalPrice}" Height="50" Width="100" Margin="50,0,50,0" FontSize="24"></TextBox>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

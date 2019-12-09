@@ -20,5 +20,10 @@ namespace _1SemEksamen.MainView
         {
             Frame.Navigate(typeof(FoodList));
         }
+
+        private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UserPage));
+        }
     }
 }

@@ -12,9 +12,9 @@ namespace _1SemEksamen.Common
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
 
-        private object _objectParameter;
+        private static object _objectParameter;
 
-        public object ObjectParameter
+        public static object ObjectParameter
         {
             get { return _objectParameter; }
         }

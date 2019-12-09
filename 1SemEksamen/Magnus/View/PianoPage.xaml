@@ -5,10 +5,139 @@
     xmlns:local="using:_1SemEksamen.Magnus.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModel="using:_1SemEksamen.Magnus.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+<Page.DataContext>
+        <viewModel:PianoVM/>
+</Page.DataContext>
 
+<Page.Resources>
+    <Style x:Name="WhiteKey" TargetType="Button">
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="Background" Value="GhostWhite"/>
+    </Style>
+    <Style x:Name="BlackKey" TargetType="Button">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Height" Value="180"/>
+        <Setter Property="Width" Value="60"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="0,0,-30,0"/>
+    </Style>
+</Page.Resources>
+
+    <Grid>
+        <TextBlock Text="{Binding ProgressBarStatus}"/> <!-- Debug loading bar status, should always display 100 in app -->
+        <StackPanel Spacing="20" HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock HorizontalAlignment="Center" Text="Click with the mouse or use: 'AWSEDFTGYHUJ' on your keyboard to play music!"/>
+                <Grid x:Name="Piano" Height="320" Width="800">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="PianoColumn"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="0" Grid.Column="0" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="A" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="2" Grid.Column="1" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="S" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="4" Grid.Column="2" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="D" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="5" Grid.Column="3" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="F" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="7" Grid.Column="4" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="G" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="9" Grid.Column="5" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="H" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="11" Grid.Column="6" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="J" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Grid.Column="7" Style="{StaticResource WhiteKey}" Height="{Binding ElementName=Piano, Path=ActualHeight}" Width="{Binding ElementName=PianoColumn, Path=ActualWidth}"/>
+
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="1" Grid.Column="0" Style="{StaticResource BlackKey}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="W" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="3" Grid.Column="1" Style="{StaticResource BlackKey}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="E" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="6" Grid.Column="3" Style="{StaticResource BlackKey}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="T" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="8" Grid.Column="4" Style="{StaticResource BlackKey}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="Y" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+                    <Button Command="{Binding PressPlayPianoNoteCommand}" CommandParameter="10" Grid.Column="5" Style="{StaticResource BlackKey}">
+                        <Button.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="U" Modifiers="None" IsEnabled="{Binding EnableButtons}"></KeyboardAccelerator>
+                        </Button.KeyboardAccelerators>
+                    </Button>
+
+
+
+                </Grid>
+                <TextBlock HorizontalAlignment="Center" Text="Press the buttons below to play a chord!"/>
+                <StackPanel Spacing="20" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <Button Content="C" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="0"/>
+                    <Button Content="Am" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="1"/>
+                    <Button Content="G" Command="{Binding PressPlayPianoChordCommand}" CommandParameter="2"/>
+
+                </StackPanel>
+                <!--<StackPanel Spacing="20" Orientation="Horizontal">
+                    <Button Content="Melody1" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="0"/>
+                    <Button Content="Melody2" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="1"/>
+                    <Button Content="Melody3" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="2"/>
+                    <Button Content="Melody4" Command="{Binding PressPlayPianoMelodyCommand}" CommandParameter="3"/>
+                </StackPanel>-->
+            </StackPanel>
+            <StackPanel x:Name="melodyStackPanel" Spacing="10" VerticalAlignment="Center">
+                <TextBlock Text="Select a melody from the box below!"/>
+                <ComboBox Width="{Binding ElementName=melodyStackPanel, Path=ActualWidth}" ItemsSource="{Binding Piano.Melodies}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" VerticalAlignment="Center">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding MelodyName}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button FontFamily="Segoe MDL2 Assets" Content="&#xE71A; &#xE768;" Command="{Binding PressPlayPianoMelodyCommand}"/>
+            </StackPanel>
+        </StackPanel>
+        <Grid Visibility="{Binding LoadingVisibility}" Background="GhostWhite">
+            <ProgressBar Value="{Binding ProgressBarStatus}" Height="10" Width="100"/>
+        </Grid>
     </Grid>
 </Page>

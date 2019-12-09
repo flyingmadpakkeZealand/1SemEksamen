@@ -120,10 +120,17 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="Magnus\Class1.cs" />
+    <Compile Include="Magnus\Handler\PianoVMHandler.cs" />
+    <Compile Include="Magnus\Model\Chord.cs" />
+    <Compile Include="Magnus\Model\Melody.cs" />
+    <Compile Include="Magnus\Model\MusicalNote.cs" />
+    <Compile Include="Magnus\Model\Piano.cs" />
+    <Compile Include="Magnus\Model\SoundFiles.cs" />
+    <Compile Include="Magnus\ViewModel\PianoVM.cs" />
     <Compile Include="Magnus\View\PianoPage.xaml.cs">
       <DependentUpon>PianoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainViewModel\UserPageVM.cs" />
     <Compile Include="MainView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -151,6 +158,17 @@
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tristan\Class1.cs" />
+    <Compile Include="Sebastian\Class2.cs" />
+    <Compile Include="Tristan\Model\StoreIndkøbskurv.cs" />
+    <Compile Include="Tristan\Model\StoreSingleton.cs" />
+    <Compile Include="Tristan\Model\Valgmuligheder.cs" />
+    <Compile Include="Tristan\Model\Tickets.cs" />
+    <Compile Include="Tristan\ViewModel\CreateStoreViewModel.cs" />
+    <Compile Include="Tristan\ViewModel\StoreViewModel.cs" />
+    <Compile Include="Tristan\ViewModel\TicketViewModel.cs" />
+    <Compile Include="Tristan\View\Store.xaml.cs">
+      <DependentUpon>Store.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tristan\View\Tickets.xaml.cs">
       <DependentUpon>Tickets.xaml</DependentUpon>
     </Compile>
@@ -161,8 +179,24 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\A.wav" />
+    <Content Include="Assets\Ais.wav" />
+    <Content Include="Assets\C.wav" />
+    <Content Include="Assets\Cis.wav" />
+    <Content Include="Assets\D.wav" />
+    <Content Include="Assets\Dis.wav" />
+    <Content Include="Assets\E.wav" />
+    <Content Include="Assets\F.wav" />
+    <Content Include="Assets\Fis.wav" />
+    <Content Include="Assets\G.wav" />
+    <Content Include="Assets\Gis.wav" />
+    <Content Include="Assets\H.wav" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
+    <Content Include="Assets\Melody1.wav" />
+    <Content Include="Assets\Melody2.wav" />
+    <Content Include="Assets\Melody3.wav" />
+    <Content Include="Assets\Melody4.wav" />
+    <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
@@ -187,6 +221,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Tristan\View\Store.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Sebastian\View\DrinksList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -208,11 +246,14 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tristan\Model\" />
-    <Folder Include="Tristan\ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

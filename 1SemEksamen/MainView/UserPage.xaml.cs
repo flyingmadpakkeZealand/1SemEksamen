@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using _1SemEksamen.Magnus.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,6 +26,11 @@ namespace _1SemEksamen.MainView
         public UserPage()
         {
             this.InitializeComponent();
+        }
+
+        private void MenuButton1_Click(object sender, RoutedEventArgs e)
+        {
+            Mainframe.Navigate(typeof(PianoPage));
         }
     }
 }
