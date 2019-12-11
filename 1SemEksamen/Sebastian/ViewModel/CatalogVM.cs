@@ -32,18 +32,25 @@ namespace _1SemEksamen.Sebastian.ViewModel
 
                 ((RelayCommand)DecreaseAmountCommand).RaiseCanExecuteChanged();
                 ((RelayCommand)IncreaseAmountCommand).RaiseCanExecuteChanged();
-                ((RelayCommand)AddItemToCartCommand).RaiseCanExecuteChanged();
+                ((RelayCommand)AddFoodToCartCommand).RaiseCanExecuteChanged();
                 OnPropertyChanged();
             }
         }
 
 
-        private ICommand _addItemToCart;
+        private ICommand _addFoodToCart;
 
-        public ICommand AddItemToCartCommand
+        public ICommand AddFoodToCartCommand
         {
-            get { return _addItemToCart; }
-            set { _addItemToCart = value; }
+            get { return _addFoodToCart; }
+            set { _addFoodToCart = value;}
+        }
+        private ICommand _addDrinksToCart;
+
+        public ICommand AddDrinksToCartCommand
+        {
+            get { return _addDrinksToCart; }
+            set { _addDrinksToCart = value; }
         }
 
 
@@ -72,17 +79,18 @@ namespace _1SemEksamen.Sebastian.ViewModel
             ShoppingCart = ShoppingCart.Instance;
             FoodCatalog = new Catalog();
             DrinkCatalog = new Catalog();
-            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "burger", 2.0));
-            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "burger", 2.0));
-            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "burger", 2.0));
-            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "burger", 2.0));
+            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "Burger", 2.0));
+            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "Hotdog", 2.0));
+            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "Sandwich", 2.0));
+            FoodCatalog.AddFood(new Food("/Assets/StoreLogo.png", "Pasta", 2.0));
 
             DrinkCatalog.AddDrink(new Drink("1000ml",  "Vand", 3.0));
             DrinkCatalog.AddDrink(new Drink("333ml", "Cola", 3.0));
             DrinkCatalog.AddDrink(new Drink("500ml", "Øl", 3.0));
             DrinkCatalog.AddDrink(new Drink("322ml","Juice", 3.0));
             
-            _addItemToCart = new RelayCommand(Add,SelectedAmountNotZero);
+            _addFoodToCart = new RelayCommand(AddFood, CanAlwaysExecute);
+            _addDrinksToCart = new RelayCommand(AddDrinks, CanAlwaysExecute);
             _increaseAmount = new RelayCommand(IncreaseAmount, ItemIsSelected);
             _decreaseAmount = new RelayCommand(DecreaseAmount,ItemIsSelected);
             }
@@ -104,15 +112,39 @@ namespace _1SemEksamen.Sebastian.ViewModel
             return ItemIsSelected() && _selectedItem.Amount != 0;
         }
 
+        public bool CanAlwaysExecute()
+        {
+            return true;
+        }
+
 
 
         //Action
 
-        public void Add()
+        public void AddDrinks()
         {
-            for (int j = SelectedItem.Amount; j > 0; j--)
+            foreach (Drink drink in DrinkCatalog.Menu)
             {
-              ShoppingCart.AddItem(_selectedItem);  
+
+                  for (int j =drink.Amount; j > 0; j--)
+                  {
+                        ShoppingCart.AddItem(drink);
+                        drink.Amount = 0;
+                  }
+                
+            }
+        }
+        public void AddFood()
+        {
+            foreach (Food food in FoodCatalog.Menu)
+            {
+
+                for (int j = food.Amount; j > 0; j--)
+                {
+                    ShoppingCart.AddItem(food);
+                    food.Amount = 0;
+                }
+
             }
         }
 

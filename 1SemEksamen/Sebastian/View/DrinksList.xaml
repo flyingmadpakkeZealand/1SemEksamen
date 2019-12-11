@@ -13,21 +13,24 @@
     </Page.DataContext>
 
     <StackPanel Spacing="50">
-        <StackPanel Orientation="Horizontal" Height="80">
+        <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Stretch" >
             <Button Content="Hovedmenu" Height="90" Width="120" Click="ButtonBase_OnClick"/>
             <Button Content="Mad" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick2"/>
             <TextBlock Text="DRIKKE" Margin="367,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Britannic Bold" FontSize="50" FontWeight="Bold"/>
-            <Button Content="Indkøbskurv" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="410,0,0,0" Height="90" Width="110" Click="ButtonBase_OnClick3"/>
+            <Button Content="Indkøbskurv" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="410,0,0,0" Height="90" Width="110" Click="ButtonBase_OnClick3" HorizontalContentAlignment="Center"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <ListView ItemsSource="{Binding DrinkCatalog.Menu}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" >
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <ListView ItemsSource="{Binding DrinkCatalog.Menu}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HorizontalAlignment="Right" Width="1200" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="500" Padding="0,0,0,0">
+                        <StackPanel Orientation="Horizontal" Spacing="475" HorizontalAlignment="Left">
                             <TextBlock Text="{Binding Size}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <StackPanel Width="100">
                             <TextBlock Text="{Binding Name}" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                            <TextBox Text="{Binding Amount}" Width="30" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"/>
-
+                            </StackPanel>
+                            <StackPanel Width="50">
+                            <TextBox Text="{Binding Amount}" Width="50" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
+                            </StackPanel>
                         </StackPanel>
 
                     </DataTemplate>
@@ -46,7 +49,7 @@
                         <Button Content="PLUS" Command="{Binding IncreaseAmountCommand}"/>
 
                     </StackPanel>
-                    <Button Content="Tilføj til kurv" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding AddItemToCartCommand}"/>
+                    <Button Content="Tilføj til kurv" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding AddDrinksToCartCommand}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

@@ -18,7 +18,7 @@
                 </Custom1:EventTriggerBehavior>
             </Custom:Interaction.Behaviors>
         </Button>
-
+        <Button Content ="Mad" Click="ButtonBase_OnClick" HorizontalAlignment="Center" Width="50" Height="50"/>
 
     </Grid>
 </Page>
