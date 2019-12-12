@@ -42,9 +42,9 @@ namespace _1SemEksamen.Sebastian.Model
             _cart.Add(item);
         }
 
-        public void RemoveItem(Item item)
+        public void RemoveItem(int index)
         {
-            _cart.Remove(item);
+            _cart.RemoveAt(index);
         }
 
         public void RemoveAll()

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using _1SemEksamen.Annotations;
 using _1SemEksamen.Common;
+using _1SemEksamen.Tristan.Model;
 
 namespace _1SemEksamen.MainViewModel
 {
@@ -30,6 +31,7 @@ namespace _1SemEksamen.MainViewModel
             _menuVisibility = false;
             _pressToggleMenuCommand = new RelayCommand(ToggleMenu);
         }
+
 
         private RelayCommand _pressToggleMenuCommand;
 

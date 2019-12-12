@@ -14,15 +14,15 @@
     </Page.DataContext>
 
     <Grid>
-        <SplitView x:Name="UserPageMenu" DisplayMode="CompactOverlay" IsPaneOpen="{Binding MenuVisibility}" CompactPaneLength="50" OpenPaneLength="150">
+        <SplitView x:Name="UserPageMenu" DisplayMode="CompactOverlay" IsPaneOpen="{Binding MenuVisibility}" CompactPaneLength="50" OpenPaneLength="200">
             <SplitView.Pane>
                 <StackPanel Background="Gray">
                     <Button x:Name="HamburgerButton" Command="{Binding PressToggleMenuCommand}" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
                             Width="50" Height="50" Background="Transparent"/>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
+                        <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xF0E5;"
                                 Width="50" Height="50" Background="Transparent" Click="MenuButton1_Click"/>
-                        <TextBlock Text="Button 1" FontSize="18" VerticalAlignment="Center" />
+                        <TextBlock Text="Interactive Piano" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <Button x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"

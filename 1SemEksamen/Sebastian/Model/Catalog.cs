@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _1SemEksamen.Sebastian.Model
 {
-    class Catalog
+    class Catalog 
     {
         
         //Katalog Property
@@ -36,6 +37,5 @@ namespace _1SemEksamen.Sebastian.Model
         }
 
         
-
     }
 }
