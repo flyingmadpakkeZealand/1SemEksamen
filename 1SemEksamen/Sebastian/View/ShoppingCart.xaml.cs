@@ -43,5 +43,6 @@ namespace _1SemEksamen.Sebastian.View
         {
             Frame.Navigate(typeof(DrinksList));
         }
+
     }
 }

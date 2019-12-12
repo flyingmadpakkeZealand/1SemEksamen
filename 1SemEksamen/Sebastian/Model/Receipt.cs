@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace _1SemEksamen.Sebastian.Model
 {
     class Receipt
     {
-        private int _id;
+        private int _id = 0;
 
         public int Id
         {
@@ -24,6 +25,15 @@ namespace _1SemEksamen.Sebastian.Model
             set { _total = value; }
         }
 
+        private string _buyerName;
+
+        public string BuyerName
+        {
+            get { return _buyerName; }
+            set { _buyerName = value; }
+        }
+
+
         private DateTime _timeStamp;
 
         public DateTime TimeStamp
@@ -32,13 +42,28 @@ namespace _1SemEksamen.Sebastian.Model
             set { _timeStamp = value; }
         }
 
-        public Receipt(int id, double total)
+        private List<Item> _itemList = new List<Item>();
+
+        public List<Item> BoughtItems
         {
-            _id = id;
-            _total = total;
-            _timeStamp = DateTime.Now;
+            get { return _itemList; }
+            set { _itemList = value; }
         }
 
+
+        public Receipt(double total, string buyer)
+        {
+            _id = _id++;
+            _total = total;
+            _timeStamp = DateTime.Now;
+            _buyerName = buyer;
+
+        }
+        
+        public void AddToReceipt(Item incomingItem)
+        {
+            _itemList.Add(incomingItem);
+        }
 
     }
 }
