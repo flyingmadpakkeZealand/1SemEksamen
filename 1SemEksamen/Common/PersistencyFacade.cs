@@ -17,7 +17,8 @@ namespace _1SemEksamen.Common
     public enum ProgramSaveFiles
     {
         Example,
-        Tickets
+        Tickets,
+        TestIndkøbskurv
     }
 
     #region PersistencyFacade Code
@@ -47,11 +48,14 @@ namespace _1SemEksamen.Common
         public static async Task SaveObjectsAsync(object objectToSave, ProgramSaveFiles saveFile, SaveMode saveMode)
         {
             string jsonString = "";
-            await Task.Run(() =>
-            {
-                jsonString = JsonConvert.SerializeObject(objectToSave);
-            });
+            jsonString = await Task.Run(() => JsonConvertMethod(objectToSave));
+
             await SerializeFiles(jsonString, saveFile, saveMode);
+        }
+
+        private static string JsonConvertMethod(object objectToSave)
+        {
+            return JsonConvert.SerializeObject(objectToSave);
         }
 
         private static async Task SerializeFiles(string jsonString, ProgramSaveFiles saveFile, SaveMode saveMode)
@@ -60,9 +64,11 @@ namespace _1SemEksamen.Common
             {
                 switch (saveMode)
                 {
-                    case SaveMode.NewEveryTime : await NewEveryTimeMethod(jsonString, saveFile);
+                    case SaveMode.NewEveryTime:
+                        await NewEveryTimeMethod(jsonString, saveFile);
                         break;
-                    case SaveMode.Continuous : await ContinuousMethod(jsonString, saveFile);
+                    case SaveMode.Continuous:
+                        await ContinuousMethod(jsonString, saveFile);
                         break;
                 }
             }
@@ -79,7 +85,7 @@ namespace _1SemEksamen.Common
                 saveFile.ToString() + ".dat",
                 CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(localFile, jsonString);
-            
+
         }
 
         private static async Task ContinuousMethod(string jsonString, ProgramSaveFiles saveFile)
