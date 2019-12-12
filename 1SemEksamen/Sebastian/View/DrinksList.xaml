@@ -23,7 +23,7 @@
             <ListView ItemsSource="{Binding DrinkCatalog.Menu}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HorizontalAlignment="Right" Width="1200" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="475" HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal" Spacing="475" Height="50">
                             <TextBlock Text="{Binding Size}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                             <StackPanel Width="100">
                             <TextBlock Text="{Binding Name}" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>

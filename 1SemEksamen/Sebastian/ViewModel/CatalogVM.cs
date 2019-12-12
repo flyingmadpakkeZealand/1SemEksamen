@@ -129,22 +129,24 @@ namespace _1SemEksamen.Sebastian.ViewModel
                   for (int j =drink.Amount; j > 0; j--)
                   {
                         ShoppingCart.AddItem(drink);
-                        drink.Amount = 0;
+                        ShoppingCart.NewTotalPrice(drink.Price);
                   }
-                
+                  drink.Amount = 0;
             }
         }
+
+        
+        
         public void AddFood()
         {
             foreach (Food food in FoodCatalog.Menu)
             {
-
                 for (int j = food.Amount; j > 0; j--)
                 {
                     ShoppingCart.AddItem(food);
-                    food.Amount = 0;
+                    ShoppingCart.NewTotalPrice(food.Price);
                 }
-
+                food.Amount = 0;
             }
         }
 

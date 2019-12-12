@@ -9,34 +9,60 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.DataContext><viewModel:ShoppingCartVM/></Page.DataContext>
+    <Page.DataContext>
+        <viewModel:ShoppingCartVM/>
+    </Page.DataContext>
 
-    <StackPanel Spacing="50">
-        <StackPanel Orientation="Horizontal" Height="80">
-            <Button Content="Hovedmenu" Height="90" Width="120" Click="ButtonBase_OnClick"/>
-            <Button Content="Mad" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick2"/>
-            <Button Content="Drikke" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick3"/>
-            <TextBlock Text="INDKØBSKURV" Margin="367,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Britannic Bold" FontSize="50" FontWeight="Bold"/>
-            
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <ListView ItemsSource="{Binding ShoppingCart.Cart}" >
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Spacing="500" Padding="0,0,0,0">
-                            <Image Source="{Binding Image}"/>
-                            <TextBlock Text="{Binding Size}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding Name}" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                            <TextBox Text="{Binding Amount}" Width="30" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="0,0,0,0"/>
+
+        <StackPanel Spacing="50">
+            <StackPanel Orientation="Horizontal" Height="80">
+                <Button Content="Hovedmenu" Height="90" Width="120" Click="ButtonBase_OnClick"/>
+                <Button Content="Mad" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick2"/>
+                <Button Content="Drikke" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick3"/>
+                <TextBlock Text="INDKØBSKURV" Margin="367,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Britannic Bold" FontSize="50" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Width="1000">
+                    <ListView ItemsSource="{Binding ShoppingCart.Cart}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" Spacing="250" Padding="0,0,0,0">
+                                    <Image Source="{Binding Image}"/>
+                                    <TextBlock Text="{Binding Size}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Stretch" Spacing="10" Width="279">
+                    <TextBlock Text="{Binding SelectedItem.Name}" FontSize="35" HorizontalAlignment="Center"/>
+                    <StackPanel Width="312">
+                        <TextBlock Text="{Binding SelectedItem.Size}"/>
+                        <TextBlock Text="{Binding SelectedItem.Price}"/>
+                        <StackPanel/>
+                        <Image Source="{Binding Image}"></Image>
+                        <StackPanel Orientation="Horizontal" Spacing="40">
+                            <Button Content="Fjern vare"  Command="{Binding RemoveItemCommand}"/>
+                            <Button Content="Tøm Kurv" Command="{Binding RemoveAllCommand}"/>
 
                         </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Navn:" Width="50" ></TextBlock>
+                            <TextBox Width="215" Text="{Binding BuyerName, Mode=TwoWay}"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="KortNr.:" Width="50"></TextBlock>
+                            <TextBox Width="215" Text="{Binding CreditCardNumber, Mode=TwoWay}" MaxLength="16"></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="Cvv:" Width="50"></TextBlock>
+                            <TextBox Width="50" Text="{Binding CvvNumber, Mode=TwoWay}" MaxLength="3"></TextBox>
+                        </StackPanel>
+                        <Button Content="Betal" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding PayCommand}" />
+                    </StackPanel>
 
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-            </ListView>
-
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
-
-    </StackPanel>
 </Page>
