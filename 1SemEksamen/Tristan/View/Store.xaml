@@ -13,36 +13,46 @@
 </Page.DataContext>
     <Grid>
         <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <ListView
-                    ItemsSource="{Binding Store.store}" SelectedItem="{Binding ValgtValgmulighed, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
+            <StackPanel Orientation="Horizontal" Spacing="730">
+                <TextBlock FontSize="48" Text="Varer"></TextBlock>
+                <TextBlock FontSize="48" Text="Indkøbskurv"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="200">
+                    <ListView MaxHeight="570"
+                            ItemsSource="{Binding Store.store}" SelectedItem="{Binding ValgtValgmulighed, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                <TextBlock Text="{Binding Price}"></TextBlock>
+                                <TextBlock Width="500" Text="{Binding Name}" FontSize="48"></TextBlock>
+                                <TextBlock Text="{Binding Price}" FontSize="48"></TextBlock>
                             </StackPanel>
                             
                         </DataTemplate>
                     </ListView.ItemTemplate>
-
-
                 </ListView>
-                <ListView
+
+                <ListView MaxHeight="570"
                     ItemsSource="{Binding IndkøbskurvSingleton.Indkøbskurv}" SelectedItem="{Binding ValgtValgmulighed, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                                <TextBlock Text="{Binding Price}"></TextBlock>
+                                <TextBlock Width="300" Text="{Binding Name}" FontSize="48"></TextBlock>
+                                <TextBlock Width="100" Text="{Binding Price}" FontSize="48"></TextBlock>
                             </StackPanel>
-
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
-
                 </ListView>
 
+               
+            
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Height="100" Width="200" Command="{Binding AddCommand}" Content="Tilføj" FontSize="48" Margin="150,200,50,0"></Button>
+                <Button Height="100" Width="100" Command="{Binding JaCommand}" Content="Ja" FontSize="48" Margin="200,200,100,0"></Button>
+                <Button Height="100" Width="100" Command="{Binding NejCommand}" Content="Nej" FontSize="48" Margin="0,200,0,0"></Button>
+                <TextBlock Text="Pris" FontSize="48" Margin="200,200,100,0"></TextBlock>
+                <TextBlock Text="{Binding IndkøbskurvSingleton.Totalprice}"  Width="200" FontSize="48" Margin="0,200,0,0"></TextBlock>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -7,9 +8,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Storage;
 using _1SemEksamen.Annotations;
 using _1SemEksamen.Common;
 using _1SemEksamen.Tristan.Model;
+using Newtonsoft.Json;
 
 namespace _1SemEksamen.Tristan.ViewModel
 {
@@ -19,7 +22,9 @@ namespace _1SemEksamen.Tristan.ViewModel
         private StoreSingleton _store;
         private Valgmulighed _valgtValgmulighed;
         private ICommand _addCommand;
-
+        private ICommand _jaCommand;
+        private ICommand _nejCommand;
+        private static string kvitteringer = "Kvitteringer.dat";
 
         public StoreIndkøbskurv IndkøbskurvSingleton
         {
@@ -27,6 +32,17 @@ namespace _1SemEksamen.Tristan.ViewModel
             set { _indkøbskurv = value; }
         }
 
+        public ICommand JaCommand
+        {
+            get { return _jaCommand; }
+            set { _jaCommand = value; }
+        }
+
+        public ICommand NejCommand
+        {
+            get { return _nejCommand; }
+            set { _nejCommand = value; }
+        }
         public ICommand AddCommand
         {
             get { return _addCommand; }
@@ -55,6 +71,8 @@ namespace _1SemEksamen.Tristan.ViewModel
             _indkøbskurv = StoreIndkøbskurv.Instance;
             _store = StoreSingleton.Instance;
             _addCommand = new RelayCommand(Add, VareErValgt);
+            _jaCommand = new RelayCommand(Ja);
+            _nejCommand = new RelayCommand(Nej);
         }
 
         public bool VareErValgt()
@@ -65,8 +83,29 @@ namespace _1SemEksamen.Tristan.ViewModel
         public void Add()
         {
 
-            Store.Add(ValgtValgmulighed);
+            IndkøbskurvSingleton.Add(ValgtValgmulighed);
+            IndkøbskurvSingleton.Totalprice = IndkøbskurvSingleton.Totalprice + ValgtValgmulighed.Price;
             ValgtValgmulighed = null;
+        }
+
+        public void Ja()
+        {
+            SaveStore(IndkøbskurvSingleton);
+            IndkøbskurvSingleton.Indkøbskurv = new ObservableCollection<Valgmulighed>();
+            OnPropertyChanged(nameof(IndkøbskurvSingleton));
+        }
+
+        public void Nej()
+        {
+            IndkøbskurvSingleton.Indkøbskurv = new ObservableCollection<Valgmulighed>();
+            OnPropertyChanged(nameof(IndkøbskurvSingleton));
+        }
+
+        async void SaveStore(StoreIndkøbskurv kvittering)
+        {
+            string BilletJsonString = JsonConvert.SerializeObject(StoreIndkøbskurv.Instance);
+            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(kvitteringer, CreationCollisionOption.OpenIfExists);
+            await FileIO.AppendTextAsync(localFile, BilletJsonString);
         }
 
 

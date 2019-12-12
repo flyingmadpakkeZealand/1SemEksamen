@@ -19,6 +19,20 @@
             </Custom:Interaction.Behaviors>
         </Button>
         <Button Content ="Mad" Click="ButtonBase_OnClick" HorizontalAlignment="Center" Width="50" Height="50"/>
+        <Button Content="Store" Margin="200,400,200,0" VerticalAlignment="Top">
+            <Custom:Interaction.Behaviors>
+                <Custom1:EventTriggerBehavior EventName="Click">
+                    <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Store"/>
+                </Custom1:EventTriggerBehavior>
+            </Custom:Interaction.Behaviors>
+        </Button>
 
+        <Button Content="Rundvisning" Margin="363,504,0,0" VerticalAlignment="Top">
+            <Custom:Interaction.Behaviors>
+                <Custom1:EventTriggerBehavior EventName="Click">
+                    <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Rundvisning"/>
+                </Custom1:EventTriggerBehavior>
+            </Custom:Interaction.Behaviors>
+        </Button>
     </Grid>
 </Page>
