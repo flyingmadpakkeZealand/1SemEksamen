@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\MessageDialogHelper.cs" />
+    <Compile Include="Common\PersistencyFacade.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Magnus\Handler\PianoVMHandler.cs" />
     <Compile Include="Magnus\Model\Chord.cs" />
