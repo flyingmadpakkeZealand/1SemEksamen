@@ -141,8 +141,8 @@ namespace _1SemEksamen.Sebastian.ViewModel
 
                 for (int j = food.Amount; j > 0; j--)
                 {
-                    ShoppingCart.AddItem(food);
                     food.Amount = 0;
+                    ShoppingCart.AddItem(food);
                 }
 
             }
