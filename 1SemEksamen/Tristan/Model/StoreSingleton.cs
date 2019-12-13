@@ -21,14 +21,20 @@ namespace _1SemEksamen.Tristan.Model
         private StoreSingleton()
         {
             store = new ObservableCollection<Valgmulighed>();
-            store.Add(new Valgmulighed("Kage",20));
-            store.Add(new Valgmulighed("Gulerods Kage", 25));
-            store.Add(new Valgmulighed("drømme Kage", 30));
+            store.Add(new Valgmulighed("T-shirt",20));
+            store.Add(new Valgmulighed("Shorts", 20));
+            store.Add(new Valgmulighed("Sweater", 25));
+            store.Add(new Valgmulighed("Banjo", 30));
+            store.Add(new Valgmulighed("Fløjte", 30));
+            store.Add(new Valgmulighed("Guitar", 25));
+            store.Add(new Valgmulighed("Vand", 30));
+            store.Add(new Valgmulighed("Slikkepind", 30));
+            store.Add(new Valgmulighed("Mintpastiller", 30));
         }
 
         public void Add(Valgmulighed vare)
         {
-            StoreIndkøbskurv.Add(vare);
+            store.Add(vare);
         }
 
     }

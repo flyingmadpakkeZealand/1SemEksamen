@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using _1SemEksamen.Annotations;
 
 namespace _1SemEksamen.Tristan.Model
 {
-    public class StoreIndkøbskurv
+    public class StoreIndkøbskurv:INotifyPropertyChanged
     {
         public ObservableCollection<Valgmulighed> Indkøbskurv { get; set; }
+
+        private int totalPrice;
+
+        public int Totalprice
+        {
+            get { return totalPrice; }
+            set { totalPrice = value; OnPropertyChanged(); }
+        }
+
 
         private static StoreIndkøbskurv _instance = new StoreIndkøbskurv();
 
@@ -21,14 +33,19 @@ namespace _1SemEksamen.Tristan.Model
         private StoreIndkøbskurv()
         {
             Indkøbskurv = new ObservableCollection<Valgmulighed>();
-            Indkøbskurv.Add(new Valgmulighed("Kage", 20));
-            Indkøbskurv.Add(new Valgmulighed(" Kage", 25));
-            Indkøbskurv.Add(new Valgmulighed(" Kage", 30));
         }
 
-        public static void Add(Valgmulighed vare)
+        public void Add(Valgmulighed vare)
         {
-            StoreIndkøbskurv.Add(vare);
+            Indkøbskurv.Add(vare);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
