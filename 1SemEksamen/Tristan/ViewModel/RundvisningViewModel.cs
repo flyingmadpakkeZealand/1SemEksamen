@@ -13,46 +13,73 @@ using _1SemEksamen.Annotations;
 using _1SemEksamen.Common;
 using _1SemEksamen.Tristan.Model;
 using Newtonsoft.Json;
+using DateTime = System.DateTime;
 
 namespace _1SemEksamen.Tristan.ViewModel
 {
     class RundvisningViewModel:INotifyPropertyChanged
     {
-        private static string Rundvisninger = "Rundvisninger.dat";
 
+ 
         private ICommand _gemCommand;
         public RundvisningSingleton RundvisningInstance { get; set; }
 
-        public string DateTimeConverter
+        public bool GemIsEnabled { get; set; }
+
+        public string CheckDatoFormat
         {
             get { return RundvisningInstance.RundvisningDateTime.ToString();}
-            set
-            {
+            set {
                 try
                 {
                     RundvisningInstance.RundvisningDateTime = Convert.ToDateTime(value);
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("You have entered a wrong date");
-                    throw;
-                }
-               
-            }
-        }
+                    MessageDialogHelper.Show("Du har intastet en dato der ikke er gyldig", "Fejl 40");
+                } } }
 
         public RundvisningViewModel()
         {
             _gemCommand = new RelayCommand(Gem);
             RundvisningInstance = RundvisningSingleton.Instance;
+            GemIsEnabled = true;
         }
 
-
-        public void Gem()
+        public async Task<bool> CheckDato(DateTime dato)
         {
-            GemRundvisning(RundvisningInstance.RundvisningDateTime);
+            object loadedFiles = await PersistencyFacade.LoadObjectsAsync(ProgramSaveFiles.Rundvisninger, typeof(List<DateTime>));
+            List<DateTime> dates = loadedFiles as List<DateTime>;
+            if (dates == null)
+            {
+                return true;
+            }
+            foreach (DateTime datoer in dates)
+            {
+                if (dato.DayOfYear == datoer.DayOfYear && dato.Hour == datoer.Hour && dato.Year == datoer.Year)
+                {
+                    MessageDialogHelper.Show("Du har intastet en dato der allerede er reserveret", "Fejl 40");
+                    return false;
+                }
+            }
             
-            OnPropertyChanged(nameof(RundvisningSingleton));
+            return true;
+            
+        }
+
+        public async void Gem()
+        {
+            GemIsEnabled = false;
+            OnPropertyChanged(nameof(GemIsEnabled));
+            if ( await CheckDato(RundvisningInstance.RundvisningDateTime) == true)
+            {
+                GemRundvisning(RundvisningInstance.RundvisningDateTime);
+                OnPropertyChanged(nameof(RundvisningSingleton));
+                MessageDialogHelper.Show("Din rundvisning er reserveret", "Yay");
+            }
+
+            GemIsEnabled = true;
+            OnPropertyChanged(nameof(GemIsEnabled));
         }
 
         public ICommand GemCommand
@@ -61,13 +88,11 @@ namespace _1SemEksamen.Tristan.ViewModel
             set { _gemCommand = value; }
         }
 
-     
+        
 
         async void GemRundvisning(DateTime Rundvisning)
         {
-            string BilletJsonString = JsonConvert.SerializeObject(Rundvisning);
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(Rundvisninger, CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(localFile, BilletJsonString);
+            await PersistencyFacade.SaveObjectsAsync(Rundvisning, ProgramSaveFiles.Rundvisninger, SaveMode.Continuous);
         }
 
 

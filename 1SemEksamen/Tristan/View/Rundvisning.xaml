@@ -13,8 +13,8 @@
     </Page.DataContext>
     <Grid>
         <StackPanel Orientation="Horizontal" Spacing="300" HorizontalAlignment="Center">
-            <TextBox Height="100" Width="500" Text="{Binding DateTimeConverter, Mode=TwoWay}" FontSize="48"></TextBox>
-            <Button Height="100" Width="400" Command="{Binding GemCommand}" Content="Bestil rundvisning" FontSize="48" />
+            <TextBox Height="100" Width="500" Text="{Binding CheckDatoFormat, Mode=TwoWay}" FontSize="48"></TextBox>
+            <Button Height="100" Width="400" IsEnabled="{Binding GemIsEnabled}" Command="{Binding GemCommand}" Content="Bestil rundvisning" FontSize="48" />
             
         </StackPanel>
         <CalendarDatePicker Date="{Binding RundvisningInstance.RundvisningDateTime}" Margin="118,628,0,0" VerticalAlignment="Top" Height="148" Width="250" FontSize="36"/>

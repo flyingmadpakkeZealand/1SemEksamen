@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -24,8 +25,8 @@ namespace _1SemEksamen.Tristan.ViewModel
         private ICommand _addCommand;
         private ICommand _jaCommand;
         private ICommand _nejCommand;
-        private static string kvitteringer = "Kvitteringer.dat";
 
+        private static string jsonFileName = "Kvitteringer.dat";
         public StoreIndkøbskurv IndkøbskurvSingleton
         {
             get { return _indkøbskurv; }
@@ -95,19 +96,24 @@ namespace _1SemEksamen.Tristan.ViewModel
             OnPropertyChanged(nameof(IndkøbskurvSingleton));
         }
 
+        public async void SaveStore(StoreIndkøbskurv kviteringer)
+        {
+            await PersistencyFacade.SaveObjectsAsync(kviteringer, ProgramSaveFiles.Kvitteringer,SaveMode.Continuous);
+        }
+
+
         public void Nej()
         {
             IndkøbskurvSingleton.Indkøbskurv = new ObservableCollection<Valgmulighed>();
             OnPropertyChanged(nameof(IndkøbskurvSingleton));
         }
 
-        async void SaveStore(StoreIndkøbskurv kvittering)
-        {
-            string BilletJsonString = JsonConvert.SerializeObject(StoreIndkøbskurv.Instance);
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(kvitteringer, CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(localFile, BilletJsonString);
-        }
+        //async void SaveStore(StoreIndkøbskurv kvittering)
+        //{
+        //    //await PersistencyFacade.SaveObjectsAsync(kvittering, ProgramSaveFiles.kvitteringer, SaveMode.Continuous);
 
+        //}
+   
 
         public event PropertyChangedEventHandler PropertyChanged;
 

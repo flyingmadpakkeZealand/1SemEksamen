@@ -17,7 +17,9 @@ namespace _1SemEksamen.Common
     public enum ProgramSaveFiles
     {
         Example,
-        Tickets
+        Tickets,
+        Rundvisninger,
+        Kvitteringer
     }
 
     #region PersistencyFacade Code
