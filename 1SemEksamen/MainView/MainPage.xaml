@@ -5,16 +5,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:mainViewModel="using:_1SemEksamen.MainViewModel"
     x:Class="_1SemEksamen.MainView.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <mainViewModel:MainPageVM/>
+    </Page.DataContext>
+
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+        <Grid x:Name="GridStyle" Row="1" Background="BurlyWood"></Grid>
+        <Image HorizontalAlignment="Left" Source="../Assets/RagnaRockLogo.png" Grid.Row="0" Margin="20,20,20,20"/>
+        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center"> <!-- Debug StackPanel-->
             <Button Content="UserPageDebug" Click="Button_Click"/>
             <Button Content="Button" VerticalAlignment="Top">
                 <Custom:Interaction.Behaviors>
@@ -33,18 +41,31 @@
             <Button Content ="Mad" Click="ButtonBase_OnClick" Width="50" Height="50"/>
         </StackPanel>
 
-        <Border VerticalAlignment="Top" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2" Grid.Row="1" Padding="10,10,10,10">
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                <StackPanel Spacing="10" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="UserName: "/>
-                    <TextBox Width="150"/>
-                </StackPanel>
-                <StackPanel Spacing="10" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="Password: "/>
-                    <PasswordBox Width="150"/>
-                </StackPanel>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,20,0,0">
+            <Border Background="GhostWhite" BorderBrush="Black" BorderThickness="2" Padding="10,10,10,10">
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <StackPanel Spacing="10" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="UserName: "/>
+                        <TextBox Text="{Binding TypedUserName, Mode=TwoWay}" Width="150"/>
+                    </StackPanel>
+                    <StackPanel Spacing="10" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="Password: "/>
+                        <PasswordBox Password="{Binding TypedPassword, Mode=TwoWay}" PlaceholderText="Enter Password" Width="150"/>
+                    </StackPanel>
 
-            </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border Background="GhostWhite" BorderBrush="Black" BorderThickness="2" Margin="0,-2,0,0">
+                <StackPanel Spacing="10" HorizontalAlignment="Center" Orientation="Horizontal">
+                    <ProgressRing IsActive="{Binding ProgressRingIsEnabled}"></ProgressRing>
+                    <Button Command="{Binding PressLoginCommand}" Content="Login"></Button>
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Background="GhostWhite">
+            <Button Content="Continue without Login"></Button>
         </Border>
 
 
