@@ -89,14 +89,14 @@ namespace _1SemEksamen.Tristan.ViewModel
             ValgtValgmulighed = null;
         }
 
-        public void Ja()
+        public async void Ja()
         {
-            SaveStore(IndkøbskurvSingleton);
+            await SaveStore(IndkøbskurvSingleton);
             IndkøbskurvSingleton.Indkøbskurv = new ObservableCollection<Valgmulighed>();
             OnPropertyChanged(nameof(IndkøbskurvSingleton));
         }
 
-        public async void SaveStore(StoreIndkøbskurv kviteringer)
+        public async Task SaveStore(StoreIndkøbskurv kviteringer)
         {
             await PersistencyFacade.SaveObjectsAsync(kviteringer, ProgramSaveFiles.Kvitteringer,SaveMode.Continuous);
         }

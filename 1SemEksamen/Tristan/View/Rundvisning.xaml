@@ -12,12 +12,12 @@
         <viewModel:RundvisningViewModel></viewModel:RundvisningViewModel>
     </Page.DataContext>
     <Grid>
-        <StackPanel Orientation="Horizontal" Spacing="300" HorizontalAlignment="Center">
+        <StackPanel Orientation="Vertical" Spacing="300">
+            <TextBlock Text="Bestil Rundvisninger" FontSize="48" HorizontalAlignment="Center" Margin="50,50,50,50"></TextBlock>
+            <StackPanel Orientation="Horizontal" Spacing="300" HorizontalAlignment="Center">
             <TextBox Height="100" Width="500" Text="{Binding CheckDatoFormat, Mode=TwoWay}" FontSize="48"></TextBox>
             <Button Height="100" Width="400" IsEnabled="{Binding GemIsEnabled}" Command="{Binding GemCommand}" Content="Bestil rundvisning" FontSize="48" />
-            
+            </StackPanel>
         </StackPanel>
-        <CalendarDatePicker Date="{Binding RundvisningInstance.RundvisningDateTime}" Margin="118,628,0,0" VerticalAlignment="Top" Height="148" Width="250" FontSize="36"/>
-        <TimePicker Margin="428,639,0,0" VerticalAlignment="Top" Height="126" Width="358" FontSize="36"/>
     </Grid>
 </Page>
