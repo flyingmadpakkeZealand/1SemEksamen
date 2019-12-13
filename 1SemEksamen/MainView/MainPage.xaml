@@ -10,22 +10,36 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Content="UserPageDebug" Click="Button_Click"/>
-        <Button Content="Button" Margin="87,392,0,0" VerticalAlignment="Top">
-            <Custom:Interaction.Behaviors>
-                <Custom1:EventTriggerBehavior EventName="Click">
-                    <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Tickets"/>
-                </Custom1:EventTriggerBehavior>
-            </Custom:Interaction.Behaviors>
-        </Button>
-        <Button Content ="Mad" Click="ButtonBase_OnClick" HorizontalAlignment="Center" Width="50" Height="50"/>
-        <Button Content="Store" Margin="200,400,200,0" VerticalAlignment="Top">
-            <Custom:Interaction.Behaviors>
-                <Custom1:EventTriggerBehavior EventName="Click">
-                    <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Store"/>
-                </Custom1:EventTriggerBehavior>
-            </Custom:Interaction.Behaviors>
-        </Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+            <Button Content="UserPageDebug" Click="Button_Click"/>
+            <Button Content="Button" VerticalAlignment="Top">
+                <Custom:Interaction.Behaviors>
+                    <Custom1:EventTriggerBehavior EventName="Click">
+                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Tickets"/>
+                    </Custom1:EventTriggerBehavior>
+                </Custom:Interaction.Behaviors>
+            </Button>
+            <Button Content ="Mad" Click="ButtonBase_OnClick" Width="50" Height="50"/>
+        </StackPanel>
+
+        <Border VerticalAlignment="Top" HorizontalAlignment="Center" BorderBrush="Black" BorderThickness="2" Grid.Row="1" Padding="10,10,10,10">
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Spacing="10" Orientation="Horizontal">
+                    <TextBlock Width="100" VerticalAlignment="Center" Text="UserName: "/>
+                    <TextBox Width="150"/>
+                </StackPanel>
+                <StackPanel Spacing="10" Orientation="Horizontal">
+                    <TextBlock Width="100" VerticalAlignment="Center" Text="Password: "/>
+                    <PasswordBox Width="150"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
 
         <Button Content="Rundvisning" Margin="363,504,0,0" VerticalAlignment="Top">
             <Custom:Interaction.Behaviors>

@@ -16,6 +16,15 @@ namespace _1SemEksamen.Sebastian.Model
             set { _cart = value; }
         }
 
+        private double _totalPrice;
+
+        public double TotalPrice
+        {
+            get { return _totalPrice; }
+            set { _totalPrice = value; }
+        }
+
+
         private static ShoppingCart _instance;
 
         public static ShoppingCart Instance
@@ -53,6 +62,10 @@ namespace _1SemEksamen.Sebastian.Model
             {
                 _cart.Remove(item);
             }
+        }
+        public void NewTotalPrice(double incomingPrice)
+        {
+            _totalPrice = _totalPrice + incomingPrice;
         }
     }
 }
