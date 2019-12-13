@@ -20,7 +20,7 @@ namespace _1SemEksamen.Common
         Example,
         Tickets,
         Rundvisninger,
-        Kvitteringer
+        Kvitteringer,
         Users
     }
 
