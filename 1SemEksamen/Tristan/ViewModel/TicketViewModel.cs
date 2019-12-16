@@ -26,7 +26,6 @@ namespace _1SemEksamen.Tristan.ViewModel
         private ICommand _addCommand;
         private ICommand _nejCommand;
         private ICommand _jaCommand;
-        private static string BilletListe = "Billetter.dat";
 
         public Ticket TicketObjekt
         {
@@ -115,9 +114,7 @@ namespace _1SemEksamen.Tristan.ViewModel
 
         async void SaveBilletter(Ticket billet)
         {
-            string BilletJsonString = JsonConvert.SerializeObject(TicketObjekt);
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(BilletListe, CreationCollisionOption.OpenIfExists);
-            await FileIO.AppendTextAsync(localFile, BilletJsonString);
+            //await PersistencyFacade.SaveObjectsAsync(billet, ProgramSaveFiles.billetter, SaveMode.Continuous);
         }
 
         [NotifyPropertyChangedInvocator]
