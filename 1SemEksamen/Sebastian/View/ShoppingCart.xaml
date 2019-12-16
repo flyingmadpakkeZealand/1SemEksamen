@@ -7,14 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:_1SemEksamen.Sebastian.ViewModel"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="BurlyWood" RequestedTheme="Light">
 
     <Page.DataContext>
         <viewModel:ShoppingCartVM/>
     </Page.DataContext>
 
-
-        <StackPanel Spacing="50">
+    <SplitView PaneBackground="#FF9E6F32" Name ="MySplitView" PanePlacement="Right" OpenPaneLength="600" CompactPaneLength="0" HorizontalAlignment="Stretch" DisplayMode="Overlay" FlowDirection="LeftToRight">
+        <SplitView.Content>
+        <StackPanel Spacing="50" Width="1300" HorizontalAlignment="Left">
             <StackPanel Orientation="Horizontal" Height="80">
                 <Button Content="Hovedmenu" Height="90" Width="120" Click="ButtonBase_OnClick"/>
                 <Button Content="Mad" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick2"/>
@@ -37,9 +38,13 @@
                 </StackPanel>
                 <StackPanel VerticalAlignment="Stretch" Spacing="10" Width="279">
                     <TextBlock Text="{Binding SelectedItem.Name}" FontSize="35" HorizontalAlignment="Center"/>
-                    <StackPanel Width="312">
+                    <StackPanel Width="312" Spacing ="10">
                         <TextBlock Text="{Binding SelectedItem.Size}"/>
                         <TextBlock Text="{Binding SelectedItem.Price}"/>
+                            <StackPanel Orientation="Horizontal" Spacing="10">
+                                <TextBlock Text="Total Pris: "></TextBlock>
+                                <TextBlock Text="{Binding TotalPriceString}"></TextBlock>
+                            </StackPanel>
                         <StackPanel/>
                         <Image Source="{Binding Image}"></Image>
                         <StackPanel Orientation="Horizontal" Spacing="40">
@@ -59,10 +64,38 @@
                             <TextBlock Text="Cvv:" Width="50"></TextBlock>
                             <TextBox Width="50" Text="{Binding CvvNumber, Mode=TwoWay}" MaxLength="3"></TextBox>
                         </StackPanel>
-                        <Button Content="Betal" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding PayCommand}" />
+                        <Button Content="Betal" Margin="0,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding PayCommand}" Click="IsPaneOpen"/>
                     </StackPanel>
 
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+
+        </SplitView.Content>
+        <SplitView.Pane >
+
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock Text="KVITTERING" FontSize="50" Margin="0,0,0,50" HorizontalAlignment="Center"></TextBlock>
+                    <TextBlock Text ="Navn:"></TextBlock>
+                    <TextBlock Text ="{Binding BuyerName}"></TextBlock>
+                    <TextBlock Text="varer:"></TextBlock>
+                    <ListView ItemsSource="{Binding Receipt.BoughtItems}" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"  IsHitTestVisible="False" IsSwipeEnabled="False"  >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+
+                                <TextBlock Text="{Binding ItemString}"></TextBlock>
+
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+                <TextBlock Text="total pris: "></TextBlock>
+                <TextBlock Text="{Binding TotalPriceString}"></TextBlock>
+            </StackPanel>
+        </SplitView.Pane>
+
+
+
+    </SplitView>
 </Page>

@@ -7,16 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:_1SemEksamen.Sebastian.ViewModel"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="BurlyWood" Foreground="White" RequestedTheme="Light">
     <Page.DataContext>
         <viewModel:CatalogVM></viewModel:CatalogVM>
     </Page.DataContext>
 
     <StackPanel Spacing="50">
-        <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Stretch" >
+        <StackPanel Orientation="Horizontal" Height="80" HorizontalAlignment="Stretch"  >
             <Button Content="Hovedmenu" Height="90" Width="120" Click="ButtonBase_OnClick"/>
             <Button Content="Mad" Margin="100,0,0,0" Height="90" Width="100" Click="ButtonBase_OnClick2"/>
-            <TextBlock Text="DRIKKE" Margin="367,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Britannic Bold" FontSize="50" FontWeight="Bold"/>
+            <TextBlock Text="DRIKKE" Margin="367,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Britannic Bold" FontSize="50" FontWeight="Bold" Foreground="Black"/>
             <Button Content="Indkøbskurv" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="410,0,0,0" Height="90" Width="110" Click="ButtonBase_OnClick3" HorizontalContentAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
@@ -25,12 +25,11 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Spacing="475" Height="50">
                             <TextBlock Text="{Binding Size}" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                            <StackPanel Width="100">
-                            <TextBlock Text="{Binding Name}" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
-                            </StackPanel>
-                            <StackPanel Width="50">
-                            <TextBox Text="{Binding Amount}" Width="50" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center"/>
-                            </StackPanel>
+                            
+                            <TextBlock Text="{Binding Name}" Width="100" FontSize="35" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+
+                            <TextBox Text="{Binding Amount}" Width="50" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                            
                         </StackPanel>
 
                     </DataTemplate>

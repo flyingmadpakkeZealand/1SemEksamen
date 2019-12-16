@@ -80,18 +80,27 @@ namespace _1SemEksamen.Sebastian.ViewModel
         public string BuyerName
         {
             get { return _buyerName; }
-            set { _buyerName = value; }
+            set { _buyerName = value; OnPropertyChanged();}
         }
 
-        private bool _isInt;
+        private double _totalPrice;
 
-        public bool Isint
+        public double TotalPrice
         {
-            get { return _isInt; }
-            set { _isInt = value; }
+            get { return _totalPrice; }
+            set { _totalPrice = value; OnPropertyChanged(); }
         }
 
-        
+        private string _totalString;
+
+        public string TotalPriceString
+        {
+            get { return _totalString; }
+            set { _totalString = value; OnPropertyChanged(); }
+        }
+
+
+
 
 
 
@@ -108,7 +117,21 @@ namespace _1SemEksamen.Sebastian.ViewModel
             _removeItemCommand = new RelayCommand(RemoveItem, CartIsNotEmpty);
             _removeAllCommand = new RelayCommand(RemoveAll, CartIsNotEmpty);
             _payCommand = new RelayCommand(Pay, CartIsNotEmpty);
+            UpdateTotalPrice();
         }
+
+
+
+
+        public void UpdateTotalPrice()
+        {
+            TotalPrice = ShoppingCart.TotalPrice;
+            TotalPriceString = $"{TotalPrice.ToString()} kr.";
+        }
+
+
+
+
 
         //func
         public bool ItemIsSelected()
@@ -131,6 +154,8 @@ namespace _1SemEksamen.Sebastian.ViewModel
         public void RemoveItem()
         {
             ShoppingCart.RemoveItem(_selectedIndex);
+            ShoppingCart.NewTotalPrice(_selectedItem.Price);
+            UpdateTotalPrice();
         }
         
 
@@ -145,10 +170,10 @@ namespace _1SemEksamen.Sebastian.ViewModel
 
         public void Pay()
         {
-            /*  forsøg på at parse til int fra string mangler exception handling
+            /* forsøg på at parse til int fra string mangler exception handling
             try
             {
-                int numVal = Int32.Parse(CreditCardNumber);
+                int CreditCardNumberInt = Int32.Parse(CreditCardNumber);
             }
             catch (FormatException e)
             {
@@ -157,29 +182,38 @@ namespace _1SemEksamen.Sebastian.ViewModel
             }
             try
             {
-                int numVal = Int32.Parse(CvvNumber);
+                int cvvNumberInt = Int32.Parse(CvvNumber);
             }
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
                 return;
             }
+            
+
             */
 
             //lav kvittering og afslut køb
-            _receipt = new Receipt(ShoppingCart.TotalPrice, BuyerName);
+
+            UpdateTotalPrice();
+            
+            _receipt = new Receipt(TotalPrice, BuyerName);
+
             foreach (Item item in ShoppingCart.Cart)
-            { 
+            {
+                item.ItemString = item.ToString();
                 _receipt.AddToReceipt(item);
             }
+
+            
+            OnPropertyChanged(nameof(Receipt));
             RemoveAll();
             
         }
 
 
 
-
-
+    
 
       
 
