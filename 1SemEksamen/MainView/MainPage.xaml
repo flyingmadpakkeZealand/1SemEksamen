@@ -24,14 +24,28 @@
         <Image HorizontalAlignment="Left" Source="../Assets/RagnaRockLogo.png" Grid.Row="0" Margin="20,20,20,20"/>
         <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center"> <!-- Debug StackPanel-->
             <Button Content="UserPageDebug" Click="Button_Click"/>
-            <Button Content="Button" VerticalAlignment="Top">
+            <Button Content="Billetter" VerticalAlignment="Top">
                 <Custom:Interaction.Behaviors>
                     <Custom1:EventTriggerBehavior EventName="Click">
                         <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Tickets"/>
                     </Custom1:EventTriggerBehavior>
                 </Custom:Interaction.Behaviors>
             </Button>
-            <Button Content="Button" VerticalAlignment="Top">
+            <Button Content="Rundvisning" VerticalAlignment="Top">
+                <Custom:Interaction.Behaviors>
+                    <Custom1:EventTriggerBehavior EventName="Click">
+                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Rundvisning"/>
+                    </Custom1:EventTriggerBehavior>
+                </Custom:Interaction.Behaviors>
+            </Button>
+            <Button Content="Statestik" VerticalAlignment="Top">
+                <Custom:Interaction.Behaviors>
+                    <Custom1:EventTriggerBehavior EventName="Click">
+                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.BesøgendeStatestik"/>
+                    </Custom1:EventTriggerBehavior>
+                </Custom:Interaction.Behaviors>
+            </Button>
+            <Button Content="Butik" VerticalAlignment="Top">
                 <Custom:Interaction.Behaviors>
                     <Custom1:EventTriggerBehavior EventName="Click">
                         <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Store"/>
