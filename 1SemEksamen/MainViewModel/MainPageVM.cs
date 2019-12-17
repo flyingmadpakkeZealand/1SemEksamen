@@ -25,7 +25,7 @@ namespace _1SemEksamen.MainViewModel
         {
             MainPageVmInstance = this;
             UserCatalogInstance = UserCatalogSingleton.UserCatalogInstance;
-            ////Uncomment this if you don't have the default users saved. Remember to delete all forms of prior Users save file. 
+            ////Uncomment this if you don't have the default users saved. Remember to delete all forms of prior Users save file. Run the program once, confirm you have a Users save file in appdata, then out comment this again.
             //User user1 = new User("User","User1");
             //User admin1 = new Admin("Admin","Admin1");
             //Dictionary<string,User> defaultUsers = new Dictionary<string, User>();

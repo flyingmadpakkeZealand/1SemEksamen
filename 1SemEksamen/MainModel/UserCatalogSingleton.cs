@@ -36,7 +36,7 @@ namespace _1SemEksamen.MainModel
             }
             catch (FileNotSavedException fnsx)
             {
-                throw new FileNotSavedException("No users have been saved on this machine. See UserPageVM for instructions on how to get the default users",fnsx.ActualException);
+                throw new FileNotSavedException("No users have been saved on this machine. See MainPageVM for instructions on how to get the default users",fnsx.ActualException);
             }
 
             UserDictionary = loadedUsers as Dictionary<string, User>;
