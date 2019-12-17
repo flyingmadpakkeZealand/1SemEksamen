@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Windows.AI.MachineLearning;
 using Windows.Data.Json;
 using Windows.Storage;
-using _1SemEksamen.Exceptions;
 using _1SemEksamen.Tristan.Model;
 using Newtonsoft.Json;
 
@@ -20,8 +19,7 @@ namespace _1SemEksamen.Common
         Example,
         Tickets,
         Rundvisninger,
-        Kvitteringer,
-        Users
+        Kvitteringer
     }
 
     #region PersistencyFacade Code
@@ -137,9 +135,8 @@ namespace _1SemEksamen.Common
             }
             catch (FileNotFoundException fnfx)
             {
-                //MessageDialogHelper.Show("Your save file could not be found, have you forgot to save any data to it?\n" + fnfx.Message, "File not Found Exception");
-                //return null;
-                throw new FileNotSavedException("Your save file could not be found, have you forgot to save any data to it ?\n", fnfx);
+                MessageDialogHelper.Show("Your save file could not be found, have you forgot to save any data to it?\n" + fnfx.Message, "File not Found Exception");
+                return null;
             }
             try
             {
