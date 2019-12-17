@@ -122,7 +122,9 @@
     <Compile Include="Common\MessageDialogHelper.cs" />
     <Compile Include="Common\PersistencyFacade.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Exceptions\CollectionTooSmallException.cs" />
     <Compile Include="Exceptions\FileNotSavedException.cs" />
+    <Compile Include="Exceptions\WrongOrUnsupportedTypeException.cs" />
     <Compile Include="Magnus\Handler\PianoVMHandler.cs" />
     <Compile Include="Magnus\Model\Chord.cs" />
     <Compile Include="Magnus\Model\Melody.cs" />

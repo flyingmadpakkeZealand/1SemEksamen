@@ -88,11 +88,12 @@ namespace _1SemEksamen.Sebastian.ViewModel
             DrinkCatalog.AddDrink(new Drink("333ml", "Cola", 3.0));
             DrinkCatalog.AddDrink(new Drink("500ml", "Øl", 3.0));
             DrinkCatalog.AddDrink(new Drink("322ml","Juice", 3.0));
-            
+
             _addFoodToCart = new RelayCommand(AddFood, CanAlwaysExecute);
             _addDrinksToCart = new RelayCommand(AddDrinks, CanAlwaysExecute);
             _increaseAmount = new RelayCommand(IncreaseAmount, ItemIsSelected);
             _decreaseAmount = new RelayCommand(DecreaseAmount,ItemIsSelected);
+
             }
 
 
@@ -145,6 +146,7 @@ namespace _1SemEksamen.Sebastian.ViewModel
                 {
                     ShoppingCart.AddItem(food);
                     ShoppingCart.NewTotalPrice(food.Price);
+                    
                 }
                 food.Amount = 0;
             }

@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using _1SemEksamen.MainView;
+using _1SemEksamen.Sebastian.ViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -44,5 +45,10 @@ namespace _1SemEksamen.Sebastian.View
             Frame.Navigate(typeof(DrinksList));
         }
 
+        private void IsPaneOpen(object sender, RoutedEventArgs e)
+        {
+            MySplitView.IsPaneOpen = true;
+            
+        }
     }
 }
