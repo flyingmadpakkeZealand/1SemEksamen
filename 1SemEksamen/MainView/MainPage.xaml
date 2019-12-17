@@ -50,15 +50,15 @@
             </Border>
             <Border Background="GhostWhite" BorderBrush="Black" BorderThickness="2" Margin="0,-2,0,0">
                 <StackPanel Spacing="10" HorizontalAlignment="Center" Orientation="Horizontal">
-                    <ProgressRing IsActive="{Binding ProgressRingIsEnabled}"></ProgressRing>
-                    <Button Command="{Binding PressLoginCommand}" Content="Login"></Button>
+                    <ProgressRing x:Name="LoginProgress" ></ProgressRing>
+                    <Button x:Name="LoginButton" Content="Login" Click="LoginButton_Click"></Button>
 
                 </StackPanel>
             </Border>
         </StackPanel>
 
         <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Background="GhostWhite">
-            <Button Content="Continue without Login"></Button>
+            <Button Content="Continue without Login" Click="Button_Click_1"></Button>
         </Border>
 
 
