@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using _1SemEksamen.Tristan.View;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,7 +35,17 @@ namespace _1SemEksamen.MainView
 
         private void MenuButton3_Click(object sender, RoutedEventArgs e)
         {
+            Frame.Navigate(typeof(AdminPage));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
             Frame.Navigate(typeof(MainPage));
+        }
+
+        private void MenuButton1_OnClick(object sender, RoutedEventArgs e)
+        {
+            Mainframe.Navigate(typeof(BesøgendeStatestik));
         }
     }
 }
