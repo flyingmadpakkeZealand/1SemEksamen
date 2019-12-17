@@ -31,6 +31,13 @@
                     </Custom1:EventTriggerBehavior>
                 </Custom:Interaction.Behaviors>
             </Button>
+            <Button Content="Button" VerticalAlignment="Top">
+                <Custom:Interaction.Behaviors>
+                    <Custom1:EventTriggerBehavior EventName="Click">
+                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Store"/>
+                    </Custom1:EventTriggerBehavior>
+                </Custom:Interaction.Behaviors>
+            </Button>
             <Button Content ="Mad" Click="ButtonBase_OnClick" Width="50" Height="50"/>
         </StackPanel>
 

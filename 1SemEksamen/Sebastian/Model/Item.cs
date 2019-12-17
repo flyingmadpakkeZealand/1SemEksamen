@@ -43,6 +43,15 @@ namespace _1SemEksamen.Sebastian.Model
             set { _price = value; }
         }
 
+        private string _itemString;
+
+        public string ItemString
+        {
+            get { return _itemString; }
+            set { _itemString = value; OnPropertyChanged(); }
+        }
+
+
         public Item()
         {
             
@@ -52,6 +61,13 @@ namespace _1SemEksamen.Sebastian.Model
             _id++;
             _name = name;
             _price = price;
+            
+        }
+
+        public override string ToString()
+        {
+            string priceString = Price.ToString();
+            return $"{Name}                         {priceString} kr.";
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

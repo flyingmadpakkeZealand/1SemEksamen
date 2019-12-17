@@ -13,13 +13,14 @@
     </Page.DataContext>
 
     <Grid>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <StackPanel.Background>
+        <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF1E3C82" Offset="1"/>
                     <GradientStop Color="#FF4CA8A8" Offset="0"/>
                 </LinearGradientBrush>
-            </StackPanel.Background>
+        </Grid.Background>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+
             <TextBlock Text="Køb billet" FontSize="48" Margin="50,50,50,50" HorizontalAlignment="Center"></TextBlock>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button CommandParameter="0" Command="{Binding AddCommand}" Content="Voksen" Height="250" Width="250" FontSize="48" Margin="50,50,50,50"></Button>

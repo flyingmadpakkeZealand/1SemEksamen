@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using _1SemEksamen.Annotations;
 
 namespace _1SemEksamen.Sebastian.Model
 {
@@ -42,9 +45,9 @@ namespace _1SemEksamen.Sebastian.Model
             set { _timeStamp = value; }
         }
 
-        private List<Item> _itemList = new List<Item>();
+        private ObservableCollection<Item> _itemList;
 
-        public List<Item> BoughtItems
+        public ObservableCollection<Item> BoughtItems
         {
             get { return _itemList; }
             set { _itemList = value; }
@@ -57,9 +60,10 @@ namespace _1SemEksamen.Sebastian.Model
             _total = total;
             _timeStamp = DateTime.Now;
             _buyerName = buyer;
-
+            BoughtItems = new ObservableCollection<Item>();
         }
-        
+
+
         public void AddToReceipt(Item incomingItem)
         {
             _itemList.Add(incomingItem);

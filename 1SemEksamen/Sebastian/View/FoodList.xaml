@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:_1SemEksamen.Sebastian.ViewModel"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="BurlyWood" RequestedTheme="Light">
     <Page.DataContext>
         <viewModel:CatalogVM></viewModel:CatalogVM>
     </Page.DataContext>
@@ -41,7 +41,7 @@
         </ListView>
             <StackPanel VerticalAlignment="Stretch" Spacing="10" Width="153">
                 <TextBlock Text="{Binding SelectedItem.Name}" FontSize="35" HorizontalAlignment="Center"/>
-                <StackPanel>
+                <StackPanel Spacing="10">
                     <TextBlock Text="{Binding SelectedItem.Size}"/>
                     <TextBlock Text="{Binding SelectedItem.Amount}"/>
                     <TextBlock Text="{Binding SelectedItem.Price}"/>

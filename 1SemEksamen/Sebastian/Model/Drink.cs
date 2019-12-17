@@ -21,5 +21,9 @@ namespace _1SemEksamen.Sebastian.Model
             _size = size;
         }
 
+        public override string ToString()
+        {
+            return $"{Name}         {Size}          {Price.ToString()} kr.";
+        }
     }
 }

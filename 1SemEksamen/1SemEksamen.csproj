@@ -167,15 +167,21 @@
     <Compile Include="Sebastian\View\ShoppingCart.xaml.cs">
       <DependentUpon>ShoppingCart.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tristan\Model\BesøgendeStatestik.cs" />
     <Compile Include="Tristan\Model\RundvisningSingleton.cs" />
     <Compile Include="Tristan\Model\StoreIndkøbskurv.cs" />
     <Compile Include="Tristan\Model\StoreSingleton.cs" />
     <Compile Include="Tristan\Model\Valgmuligheder.cs" />
     <Compile Include="Tristan\Model\Tickets.cs" />
+    <Compile Include="Tristan\ViewModel\BesøgendeStatestikViewModel.cs" />
     <Compile Include="Tristan\ViewModel\CreateStoreViewModel.cs" />
     <Compile Include="Tristan\ViewModel\RundvisningViewModel.cs" />
     <Compile Include="Tristan\ViewModel\StoreViewModel.cs" />
+    <Compile Include="Tristan\ViewModel\TestClass.cs" />
     <Compile Include="Tristan\ViewModel\TicketViewModel.cs" />
+    <Compile Include="Tristan\View\BesøgendeStatestik.xaml.cs">
+      <DependentUpon>BesøgendeStatestik.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tristan\View\Rundvisning.xaml.cs">
       <DependentUpon>Rundvisning.xaml</DependentUpon>
     </Compile>
@@ -236,6 +242,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainView\UserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tristan\View\BesøgendeStatestik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
