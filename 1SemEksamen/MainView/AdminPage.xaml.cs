@@ -26,5 +26,15 @@ namespace _1SemEksamen.MainView
         {
             this.InitializeComponent();
         }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdminPageMenu.IsPaneOpen = !AdminPageMenu.IsPaneOpen;
+        }
+
+        private void MenuButton3_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }
