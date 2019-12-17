@@ -19,11 +19,12 @@ namespace _1SemEksamen.MainViewModel
     {
         private static Type[] _userTypes = new Type[]{typeof(Dictionary<string,User>), typeof(Dictionary<string,Admin>)};
         public static MainPageVM MainPageVmInstance { get; set; }
-
+        public UserCatalogSingleton UserCatalogInstance { get; set; }
 
         public MainPageVM()
         {
             MainPageVmInstance = this;
+            UserCatalogInstance = UserCatalogSingleton.UserCatalogInstance;
             ////Uncomment this if you don't have the default users saved. Remember to delete all forms of prior Users save file. 
             //User user1 = new User("User","User1");
             //User admin1 = new Admin("Admin","Admin1");
@@ -45,9 +46,11 @@ namespace _1SemEksamen.MainViewModel
         public async Task<User> Login()
         {
 
-            object loadedUsers = await PersistencyFacade.LoadCollectionWithPolymorphism(ProgramSaveFiles.Users,
-                typeof(Dictionary<string, User>), _userTypes);
-            Dictionary<string, User> users = loadedUsers as Dictionary<string, User>;
+            if (UserCatalogInstance.UserDictionary.Count==0)
+            {
+                await UserCatalogInstance.LoadUsersToCatalogAsync();
+            }
+            Dictionary<string, User> users = UserCatalogInstance.UserDictionary;
             if (users.ContainsKey(TypedUserName))
             {
                 if (users[TypedUserName].Password==TypedPassword)

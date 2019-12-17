@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="MainModel\Admin.cs" />
     <Compile Include="MainModel\User.cs" />
+    <Compile Include="MainModel\UserCatalogSingleton.cs" />
     <Compile Include="MainViewModel\MainPageVM.cs" />
     <Compile Include="MainViewModel\UserPageVM.cs" />
     <Compile Include="MainView\AdminPage.xaml.cs">

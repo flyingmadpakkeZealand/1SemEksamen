@@ -397,7 +397,15 @@ namespace _1SemEksamen.Common
         //Loading.
         public static async Task<object> LoadCollectionWithPolymorphism(ProgramSaveFiles saveFile, Type mainCollectionType, Type[] subCollectionTypes)
         {
-            StorageFile localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(saveFile.ToString() + ".dat");
+            StorageFile localFile = null;
+            try
+            {
+                localFile = await ApplicationData.Current.LocalFolder.GetFileAsync(saveFile.ToString() + ".dat");
+            }
+            catch (FileNotFoundException fnfx)
+            {
+                throw new FileNotSavedException("It appears no save file with this name exist. Are you sure you have saved any data yet? File:" + fnfx.FileName,fnfx);
+            }
             string saveData = await FileIO.ReadTextAsync(localFile);
             List<string> seperatedMetaData = SeperateMetaData(saveData); //Order: type data, elementsLength data, pureData(the collection itself).
             string pureData = seperatedMetaData[2]; //BreakPoint.
