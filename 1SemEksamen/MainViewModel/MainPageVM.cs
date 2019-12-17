@@ -17,54 +17,54 @@ namespace _1SemEksamen.MainViewModel
 {
     public class MainPageVM:INotifyPropertyChanged
     {
+        private static Type[] _userTypes = new Type[]{typeof(Dictionary<string,User>), typeof(Dictionary<string,Admin>)};
+        public static MainPageVM MainPageVmInstance { get; set; }
+
+
         public MainPageVM()
         {
-            _pressLoginCommand = new RelayCommand(Login);
-            //User user1 = new User("Poul","Zealand123");
-            //User user2 = new User("Charlotte","Zealand321");
-            //User user3 = new Admin("flyingmadpakke","qwerty");
-            //Dictionary<string,User> users = new Dictionary<string, User>();
-
-            //users.Add(user1.UserName + user1.Password, user1);
-            //users.Add(user2.UserName + user2.Password, user2);
-            //users.Add(user3.UserName + user3.Password, user3);
-
-            //PersistencyFacade.SaveObjectsAsync(users, ProgramSaveFiles.Users, SaveMode.Continuous);
+            MainPageVmInstance = this;
+            ////Uncomment this if you don't have the default users saved. Remember to delete all forms of prior Users save file. 
+            //_pressLoginCommand = new RelayCommand(Login);
+            //User user1 = new User("User","User1");
+            //User admin1 = new Admin("Admin","Admin1");
+            //Dictionary<string,User> defaultUsers = new Dictionary<string, User>();
+            //defaultUsers.Add(user1.UserName,user1);
+            //defaultUsers.Add(admin1.UserName,admin1);
+            //SaveDefaultUsers(defaultUsers);
+            TypedUserName = "";
         }
 
-        private RelayCommand _pressLoginCommand;
-
-        public ICommand PressLoginCommand
+        private async void SaveDefaultUsers(Dictionary<string, User> defaultUsers)
         {
-            get { return _pressLoginCommand; }
+            await PersistencyFacade.SaveCollectionWithPolymorphism(defaultUsers, ProgramSaveFiles.Users);
         }
 
         public string TypedUserName { get; set; }
         public string TypedPassword { get; set; }
-        public bool ProgressRingIsEnabled { get; set; }
 
-        private async void Login()
+        public async Task<User> Login()
         {
-            ProgressRingIsEnabled = true;
-            OnPropertyChanged(nameof(ProgressRingIsEnabled));
-            object loadedUsers =
-                await PersistencyFacade.LoadObjectsAsync(ProgramSaveFiles.Users,
-                    typeof(List<Dictionary<string, User>>));
-            List<Dictionary<string, User>> UsersContinuous = (List<Dictionary<string, User>>) loadedUsers;
-            Dictionary<string, User> UsersInstance = UsersContinuous[0];
-            await Task.Run(() => Thread.Sleep(2000));
-            if (UsersInstance.ContainsKey(TypedUserName+TypedPassword))
+
+            object loadedUsers = await PersistencyFacade.LoadCollectionWithPolymorphism(ProgramSaveFiles.Users,
+                typeof(Dictionary<string, User>), _userTypes);
+            Dictionary<string, User> users = loadedUsers as Dictionary<string, User>;
+            if (users.ContainsKey(TypedUserName))
             {
-                MessageDialogHelper.Show("User found!","User Found");
+                if (users[TypedUserName].Password==TypedPassword)
+                {
+                    return users[TypedUserName];
+                }
+                MessageDialogHelper.Show("Password is case sensitive, please type the correct Password", "Incorrect Password");
             }
             else
             {
-                MessageDialogHelper.Show("No match!","User Not Found");
+                MessageDialogHelper.Show("Could not find User. Remember your username is case sensitive","User not found");
             }
 
-            ProgressRingIsEnabled = false;
-            OnPropertyChanged(nameof(ProgressRingIsEnabled));
+            return null;
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

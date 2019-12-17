@@ -35,22 +35,22 @@ namespace _1SemEksamen.MainView
 
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            //LoginButton.IsEnabled = false;
-            //LoginProgress.IsActive = true;
-            //User recievedUser = await MainPageVM.MainPageVmInstance.Login();
-            //if (recievedUser!=null)
-            //{
-            //    if (recievedUser.IsAdmin)
-            //    {
-            //        Frame.Navigate(typeof(AdminPage));
-            //    }
-            //    else
-            //    {
-            //        Frame.Navigate(typeof(UserPage));
-            //    }
-            //}
-            //LoginButton.IsEnabled = true;
-            //LoginProgress.IsActive = false;
+            LoginButton.IsEnabled = false;
+            LoginProgress.IsActive = true;
+            User receivedUser = await MainPageVM.MainPageVmInstance.Login();
+            if (receivedUser != null)
+            {
+                if (receivedUser.IsAdmin)
+                {
+                    Frame.Navigate(typeof(AdminPage));
+                }
+                else
+                {
+                    Frame.Navigate(typeof(UserPage));
+                }
+            }
+            LoginButton.IsEnabled = true;
+            LoginProgress.IsActive = false;
         }
     }
 }

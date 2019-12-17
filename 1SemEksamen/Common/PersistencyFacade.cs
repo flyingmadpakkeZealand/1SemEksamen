@@ -24,7 +24,6 @@ namespace _1SemEksamen.Common
         Rundvisninger,
         Kvitteringer,
         Users,
-        Admins,
         TestDictionary,
         TestList,
         TestObservableCollection
