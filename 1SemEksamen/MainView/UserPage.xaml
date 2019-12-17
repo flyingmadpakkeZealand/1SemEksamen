@@ -30,18 +30,20 @@
                         <TextBlock Text="Button 2" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
-                                Width="50" Height="50" Background="Transparent"/>
-                        <TextBlock Text="Button 3" FontSize="18" VerticalAlignment="Center" />
+                        <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE80F;"
+                                Width="50" Height="50" Background="Transparent" Click="MenuButton3_Click"/>
+                        <TextBlock Text="MainPage" FontSize="18" VerticalAlignment="Center" />
                     </StackPanel>
                 </StackPanel>
             </SplitView.Pane>
             <SplitView.Content>
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="127*"/>
-                        <RowDefinition Height="953*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="4*"/>
                     </Grid.RowDefinitions>
+                    <Grid Style="{StaticResource MainPageGridStyle}" Row="1"/>
+                    <Image Style="{StaticResource MainPageImageStyle}" Source="../Assets/RagnaRockLogo.png" Grid.Row="0"></Image>
                     <TextBlock Text="UserPage" FontSize="54" Foreground="Black"
                                HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,377,0,0" Grid.Row="1"/>
                     <Frame x:Name="Mainframe" Grid.RowSpan="2"/>

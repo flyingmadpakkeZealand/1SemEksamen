@@ -32,5 +32,10 @@ namespace _1SemEksamen.MainView
         {
             Mainframe.Navigate(typeof(PianoPage));
         }
+
+        private void MenuButton3_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
     }
 }

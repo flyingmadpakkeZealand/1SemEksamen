@@ -4,4 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:_1SemEksamen">
 
+    <Application.Resources>
+        <Style x:Name="MainPageGridStyle" TargetType="Grid">
+            <Setter Property="Background" Value="BurlyWood"/>
+        </Style>
+        <Style x:Name="MainPageImageStyle" TargetType="Image">
+            <Setter Property="Margin" Value="20,20,20,20"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+    </Application.Resources>
+
 </Application>

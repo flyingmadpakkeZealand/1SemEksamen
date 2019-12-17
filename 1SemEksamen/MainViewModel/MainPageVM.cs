@@ -25,7 +25,6 @@ namespace _1SemEksamen.MainViewModel
         {
             MainPageVmInstance = this;
             ////Uncomment this if you don't have the default users saved. Remember to delete all forms of prior Users save file. 
-            //_pressLoginCommand = new RelayCommand(Login);
             //User user1 = new User("User","User1");
             //User admin1 = new Admin("Admin","Admin1");
             //Dictionary<string,User> defaultUsers = new Dictionary<string, User>();

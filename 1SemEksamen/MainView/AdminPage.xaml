@@ -9,6 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid Style="{StaticResource MainPageGridStyle}" Row="1"/>
+            <Image Style="{StaticResource MainPageImageStyle}" Source="../Assets/RagnaRockLogo.png" Grid.Row="0"></Image>
+        </Grid>
 
     </Grid>
 </Page>
