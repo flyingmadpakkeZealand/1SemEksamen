@@ -11,7 +11,7 @@
     <Page.DataContext>
         <viewModel:RundvisningViewModel></viewModel:RundvisningViewModel>
     </Page.DataContext>
-    <Grid>
+    <Grid Background="BurlyWood">
         <StackPanel Orientation="Vertical" Spacing="300">
             <TextBlock Text="Bestil Rundvisninger" FontSize="48" HorizontalAlignment="Center" Margin="50,50,50,50"></TextBlock>
             <StackPanel Orientation="Horizontal" Spacing="300" HorizontalAlignment="Center">

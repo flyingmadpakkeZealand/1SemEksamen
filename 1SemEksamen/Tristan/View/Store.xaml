@@ -11,7 +11,7 @@
 <Page.DataContext>
         <viewModel:StoreViewModel></viewModel:StoreViewModel>
 </Page.DataContext>
-    <Grid>
+    <Grid Background="BurlyWood">
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Butik" HorizontalAlignment="Center" FontSize="48" ></TextBlock>
             <StackPanel Orientation="Horizontal" Spacing="730">

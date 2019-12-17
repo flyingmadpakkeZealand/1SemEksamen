@@ -19,7 +19,7 @@ namespace _1SemEksamen.MainViewModel
     {
         public MainPageVM()
         {
-            _pressLoginCommand = new RelayCommand(Login);
+            //_pressLoginCommand = new RelayCommand(Login);
             //User user1 = new User("Poul","Zealand123");
             //User user2 = new User("Charlotte","Zealand321");
             //User user3 = new Admin("flyingmadpakke","qwerty");
@@ -43,28 +43,28 @@ namespace _1SemEksamen.MainViewModel
         public string TypedPassword { get; set; }
         public bool ProgressRingIsEnabled { get; set; }
 
-        private async void Login()
-        {
-            ProgressRingIsEnabled = true;
-            OnPropertyChanged(nameof(ProgressRingIsEnabled));
-            object loadedUsers =
-                await PersistencyFacade.LoadObjectsAsync(ProgramSaveFiles.Users,
-                    typeof(List<Dictionary<string, User>>));
-            List<Dictionary<string, User>> UsersContinuous = (List<Dictionary<string, User>>) loadedUsers;
-            Dictionary<string, User> UsersInstance = UsersContinuous[0];
-            await Task.Run(() => Thread.Sleep(2000));
-            if (UsersInstance.ContainsKey(TypedUserName+TypedPassword))
-            {
-                MessageDialogHelper.Show("User found!","User Found");
-            }
-            else
-            {
-                MessageDialogHelper.Show("No match!","User Not Found");
-            }
+        //private async void Login()
+        //{
+        //    ProgressRingIsEnabled = true;
+        //    OnPropertyChanged(nameof(ProgressRingIsEnabled));
+        //    object loadedUsers =
+        //        await PersistencyFacade.LoadObjectsAsync(ProgramSaveFiles.Users,
+        //            typeof(List<Dictionary<string, User>>));
+        //    List<Dictionary<string, User>> UsersContinuous = (List<Dictionary<string, User>>)loadedUsers;
+        //    Dictionary<string, User> UsersInstance = UsersContinuous[0];
+        //    await Task.Run(() => Thread.Sleep(2000));
+        //    if (UsersInstance.ContainsKey(TypedUserName + TypedPassword))
+        //    {
+        //        MessageDialogHelper.Show("User found!", "User Found");
+        //    }
+        //    else
+        //    {
+        //        MessageDialogHelper.Show("No match!", "User Not Found");
+        //    }
 
-            ProgressRingIsEnabled = false;
-            OnPropertyChanged(nameof(ProgressRingIsEnabled));
-        }
+        //    ProgressRingIsEnabled = false;
+        //    OnPropertyChanged(nameof(ProgressRingIsEnabled));
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
