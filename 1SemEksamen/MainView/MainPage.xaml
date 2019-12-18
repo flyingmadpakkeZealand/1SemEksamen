@@ -22,7 +22,8 @@
         </Grid.RowDefinitions>
         <Grid x:Name="GridStyle" Row="1" Background="BurlyWood"></Grid>
         <Image HorizontalAlignment="Left" Source="../Assets/RagnaRockLogo.png" Grid.Row="0" Margin="20,20,20,20"/>
-        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center"> <!-- Debug StackPanel-->
+        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+            <!-- Debug StackPanel-->
             <Button Content="UserPageDebug" Click="Button_Click"/>
             <Button Content="Billetter" VerticalAlignment="Top">
                 <Custom:Interaction.Behaviors>
@@ -78,9 +79,16 @@
             </Border>
         </StackPanel>
 
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Background="GhostWhite">
-            <Button Content="Continue without Login" Click="Button_Click_1"></Button>
-        </Border>
+
+        <StackPanel Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+            <Border Background="GhostWhite">
+                <Button Content="Continue without Login" Click="Button_Click_1"/>
+            </Border>
+            <Border HorizontalAlignment="Center" Background="GhostWhite">
+                <Button Content="Sign Up!" Click="Button_Click_2"/>
+            </Border>
+        </StackPanel>
+
 
 
         <Button Content="Rundvisning" Margin="363,504,0,0" VerticalAlignment="Top">

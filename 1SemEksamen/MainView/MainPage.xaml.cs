@@ -52,5 +52,10 @@ namespace _1SemEksamen.MainView
             LoginButton.IsEnabled = true;
             LoginProgress.IsActive = false;
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(SignUpPage));
+        }
     }
 }

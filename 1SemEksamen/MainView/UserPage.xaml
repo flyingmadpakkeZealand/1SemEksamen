@@ -54,8 +54,10 @@
                     </Grid.RowDefinitions>
                     <Grid Style="{StaticResource MainPageGridStyle}" Row="1"/>
                     <Image Style="{StaticResource MainPageImageStyle}" Source="../Assets/RagnaRockLogo.png" Grid.Row="0"></Image>
-                    <TextBlock Text="UserPage" FontSize="54" Foreground="Black"
-                               HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,377,0,0" Grid.Row="1"/>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="20,20,20,20">
+                        <TextBlock Text="Welcome!" FontSize="45" Foreground="Black"/>
+                        <TextBlock Text="{Binding UserName}" FontSize="45" Foreground="Black"/>
+                    </StackPanel>
                     <Frame x:Name="Mainframe" Grid.RowSpan="2"/>
                 </Grid>
             </SplitView.Content>
