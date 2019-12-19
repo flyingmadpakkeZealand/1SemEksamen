@@ -12,7 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using _1SemEksamen.Tristan.View;
+using _1SemEksamen.MainViewModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -21,31 +21,24 @@ namespace _1SemEksamen.MainView
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AdminPage : Page
+    public sealed partial class SignUpPage : Page
     {
-        public AdminPage()
+        public SignUpPage()
         {
             this.InitializeComponent();
         }
 
-        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        private async void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-            AdminPageMenu.IsPaneOpen = !AdminPageMenu.IsPaneOpen;
-        }
-
-        private void MenuButton3_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(AdminPage));
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
-        }
-
-        private void MenuButton1_OnClick(object sender, RoutedEventArgs e)
-        {
-            Mainframe.Navigate(typeof(BesøgendeStatestik));
+            SignUpProgress.IsActive = true;
+            SignUpButton.IsEnabled = false;
+            bool signUpSuccessful = await MainPageVM.MainPageVmInstance.SignUp();
+            SignUpProgress.IsActive = false;
+            SignUpButton.IsEnabled = true;
+            if (signUpSuccessful)
+            {
+                Frame.Navigate(typeof(UserPage));
+            }
         }
     }
 }

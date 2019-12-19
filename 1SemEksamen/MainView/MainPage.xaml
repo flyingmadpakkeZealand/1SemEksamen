@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Custom="using:Microsoft.Xaml.Interactivity" xmlns:Custom1="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:mainViewModel="using:_1SemEksamen.MainViewModel"
+    xmlns:mainViewModel="using:_1SemEksamen.MainViewModel" x:Name="MainStyle"
     x:Class="_1SemEksamen.MainView.MainPage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -22,16 +22,31 @@
         </Grid.RowDefinitions>
         <Grid x:Name="GridStyle" Row="1" Background="BurlyWood"></Grid>
         <Image HorizontalAlignment="Left" Source="../Assets/RagnaRockLogo.png" Grid.Row="0" Margin="20,20,20,20"/>
-        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center"> <!-- Debug StackPanel-->
+        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
+            <!-- Debug StackPanel-->
             <Button Content="UserPageDebug" Click="Button_Click"/>
-            <Button Content="Button" VerticalAlignment="Top">
+            <Button Content="Billetter" VerticalAlignment="Top">
                 <Custom:Interaction.Behaviors>
                     <Custom1:EventTriggerBehavior EventName="Click">
                         <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Tickets"/>
                     </Custom1:EventTriggerBehavior>
                 </Custom:Interaction.Behaviors>
             </Button>
-            <Button Content="Button" VerticalAlignment="Top">
+            <Button Content="Rundvisning" VerticalAlignment="Top">
+                <Custom:Interaction.Behaviors>
+                    <Custom1:EventTriggerBehavior EventName="Click">
+                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Rundvisning"/>
+                    </Custom1:EventTriggerBehavior>
+                </Custom:Interaction.Behaviors>
+            </Button>
+            <Button Content="Statestik" VerticalAlignment="Top">
+                <Custom:Interaction.Behaviors>
+                    <Custom1:EventTriggerBehavior EventName="Click">
+                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.BesøgendeStatestik"/>
+                    </Custom1:EventTriggerBehavior>
+                </Custom:Interaction.Behaviors>
+            </Button>
+            <Button Content="Butik" VerticalAlignment="Top">
                 <Custom:Interaction.Behaviors>
                     <Custom1:EventTriggerBehavior EventName="Click">
                         <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Store"/>
@@ -57,16 +72,23 @@
             </Border>
             <Border Background="GhostWhite" BorderBrush="Black" BorderThickness="2" Margin="0,-2,0,0">
                 <StackPanel Spacing="10" HorizontalAlignment="Center" Orientation="Horizontal">
-                    <ProgressRing IsActive="{Binding ProgressRingIsEnabled}"></ProgressRing>
-                    <Button Command="{Binding PressLoginCommand}" Content="Login"></Button>
+                    <ProgressRing x:Name="LoginProgress" ></ProgressRing>
+                    <Button x:Name="LoginButton" Content="Login" Click="LoginButton_Click"></Button>
 
                 </StackPanel>
             </Border>
         </StackPanel>
 
-        <Border HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Background="GhostWhite">
-            <Button Content="Continue without Login"></Button>
-        </Border>
+
+        <StackPanel Spacing="10" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+            <Border Background="GhostWhite">
+                <Button Content="Continue without Login" Click="Button_Click_1"/>
+            </Border>
+            <Border HorizontalAlignment="Center" Background="GhostWhite">
+                <Button Content="Sign Up!" Click="Button_Click_2"/>
+            </Border>
+        </StackPanel>
+
 
 
         <Button Content="Rundvisning" Margin="363,504,0,0" VerticalAlignment="Top">

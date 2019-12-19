@@ -17,53 +17,99 @@ namespace _1SemEksamen.MainViewModel
 {
     public class MainPageVM:INotifyPropertyChanged
     {
+        private static Type[] _userTypes = new Type[]{typeof(Dictionary<string,User>), typeof(Dictionary<string,Admin>)};
+        public static MainPageVM MainPageVmInstance { get; set; }
+        public UserCatalogSingleton UserCatalogInstance { get; set; }
+        public User LoginUser { get; set; }
+
         public MainPageVM()
         {
-            _pressLoginCommand = new RelayCommand(Login);
-            //User user1 = new User("Poul","Zealand123");
-            //User user2 = new User("Charlotte","Zealand321");
-            //User user3 = new Admin("flyingmadpakke","qwerty");
-            //Dictionary<string,User> users = new Dictionary<string, User>();
-
-            //users.Add(user1.UserName + user1.Password, user1);
-            //users.Add(user2.UserName + user2.Password, user2);
-            //users.Add(user3.UserName + user3.Password, user3);
-
-            //PersistencyFacade.SaveObjectsAsync(users, ProgramSaveFiles.Users, SaveMode.Continuous);
+            MainPageVmInstance = this;
+            UserCatalogInstance = UserCatalogSingleton.UserCatalogInstance;
+            LoginUser = null;
+            ////Uncomment this if you don't have the default users saved. Remember to delete all forms of prior Users save file. Run the program once, confirm you have a Users save file in appdata, then out comment this again.
+            //User user1 = new User("User","User1");
+            //User admin1 = new Admin("Admin","Admin1");
+            //Dictionary<string,User> defaultUsers = new Dictionary<string, User>();
+            //defaultUsers.Add(user1.UserName,user1);
+            //defaultUsers.Add(admin1.UserName,admin1);
+            //SaveDefaultUsers(defaultUsers);
+            TypedUserName = "";
+            TypedPassword = "";
         }
 
-        private RelayCommand _pressLoginCommand;
-
-        public ICommand PressLoginCommand
+        private async void SaveDefaultUsers(Dictionary<string, User> defaultUsers)
         {
-            get { return _pressLoginCommand; }
+            await PersistencyFacade.SaveCollectionWithPolymorphism(defaultUsers, ProgramSaveFiles.Users);
         }
 
         public string TypedUserName { get; set; }
         public string TypedPassword { get; set; }
-        public bool ProgressRingIsEnabled { get; set; }
+        public string SamePassword { get; set; }
 
-        private async void Login()
+        public async Task<User> Login()
         {
-            ProgressRingIsEnabled = true;
-            OnPropertyChanged(nameof(ProgressRingIsEnabled));
-            object loadedUsers =
-                await PersistencyFacade.LoadObjectsAsync(ProgramSaveFiles.Users,
-                    typeof(List<Dictionary<string, User>>));
-            List<Dictionary<string, User>> UsersContinuous = (List<Dictionary<string, User>>) loadedUsers;
-            Dictionary<string, User> UsersInstance = UsersContinuous[0];
-            await Task.Run(() => Thread.Sleep(2000));
-            if (UsersInstance.ContainsKey(TypedUserName+TypedPassword))
+            string userName = TypedUserName;
+            string password = TypedPassword;
+            if (UserCatalogInstance.UserDictionary.Count==0)
             {
-                MessageDialogHelper.Show("User found!","User Found");
+                await UserCatalogInstance.LoadUsersToCatalogAsync();
+            }
+            Dictionary<string, User> users = UserCatalogInstance.UserDictionary;
+            if (users.ContainsKey(userName))
+            {
+                if (users[userName].Password==password)
+                {
+                    LoginUser = users[userName];
+                    return users[userName];
+                }
+                MessageDialogHelper.Show("Password is case sensitive, please type the correct Password", "Incorrect Password");
             }
             else
             {
-                MessageDialogHelper.Show("No match!","User Not Found");
+                MessageDialogHelper.Show("Could not find User. Remember your username is case sensitive","User not found");
             }
 
-            ProgressRingIsEnabled = false;
-            OnPropertyChanged(nameof(ProgressRingIsEnabled));
+            return null;
+        }
+
+        public async Task<bool> SignUp()
+        {
+            string userName = TypedUserName;
+            string password = TypedPassword;
+            string samePassword = SamePassword;
+            if (userName==""||password=="")
+            {
+                MessageDialogHelper.Show("Please type a valid Username and/or Password. An empty space is not valid","Invalid Format");
+                return false;
+            }
+            if (UserCatalogInstance.UserDictionary.Count==0)
+            {
+                await UserCatalogInstance.LoadUsersToCatalogAsync();
+            }
+
+            Dictionary<string, User> users = UserCatalogInstance.UserDictionary;
+            if (!users.ContainsKey(userName))
+            {
+                if (password==samePassword)
+                {
+                    users.Add(userName,new User(userName,password));
+                    await PersistencyFacade.SaveCollectionWithPolymorphism(users, ProgramSaveFiles.Users);
+                    LoginUser = users[userName];
+                    MessageDialogHelper.Show("You are now signed up as: " + TypedUserName,"Thanks for signing up!");
+                    return true;
+                }
+                else
+                {
+                    MessageDialogHelper.Show("Your passwords do not match, please make sure both passwords are equal.","Password mismatch");
+                }
+            }
+            else
+            {
+                MessageDialogHelper.Show("Sorry, but this username is already taken :(","Username already taken");
+            }
+
+            return false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

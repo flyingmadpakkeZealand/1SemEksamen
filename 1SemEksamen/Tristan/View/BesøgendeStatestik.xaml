@@ -8,14 +8,14 @@
     xmlns:viewModel="using:_1SemEksamen.Tristan.ViewModel"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<Page.DataContext>
+    <Page.DataContext>
         <viewModel:BesøgendeStatestikViewModel></viewModel:BesøgendeStatestikViewModel>
-</Page.DataContext>
-    <Grid>
+    </Page.DataContext>
+    <Grid Background="BurlyWood">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
             <TextBlock Text="Besøgende Statestik" HorizontalAlignment="Center" FontSize="48" Margin="50,50,50,50"/>
             <StackPanel Orientation="Horizontal">
-                <ListView ItemsSource="{Binding YakseDag}">
+                <ListView ItemsSource="{Binding YakseTimer}" SelectionMode="None">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Vertical">
@@ -26,13 +26,70 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Spacing="20">
-                    <Button VerticalAlignment="Bottom" Height="400" Width="50"></Button>
-                    <Button VerticalAlignment="Bottom" Height="100" Width="50"></Button>
-                    <Button VerticalAlignment="Bottom" Height="100" Width="50"></Button>
-                    <Button VerticalAlignment="Bottom" Height="100" Width="50"></Button>
-                    <Button VerticalAlignment="Bottom" Height="100" Width="50"></Button>
-                    <Button VerticalAlignment="Bottom" Height="100" Width="50"></Button>
-                    <Button VerticalAlignment="Bottom" Height="100" Width="50"></Button>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Height="{Binding XakseTimer[0].Height}" Width="50"></Button>
+                        <TextBlock Text="1-4" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Height="{Binding XakseTimer[1].Height}" Width="50"></Button>
+                        <TextBlock Text="5-8" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Height="{Binding XakseTimer[2].Height}" Width="50"></Button>
+                        <TextBlock Text="9-12" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Height="{Binding XakseTimer[3].Height}" Width="50"></Button>
+                        <TextBlock Text="13-16" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Height="{Binding XakseTimer[4].Height}" Width="50"></Button>
+                        <TextBlock Text="17-20" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Height="{Binding XakseTimer[5].Height}" Width="50"></Button>
+                        <TextBlock Text="21-24" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </StackPanel>
+                <ListView ItemsSource="{Binding YakseDage}" Margin="150,0,0,0" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="{Binding Number}"></TextBlock>
+                                <TextBlock Text="_____"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Spacing="20">
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.MandagData}" Height="{Binding XakseDag[0].Height}" Width="50"></Button>
+                        <TextBlock Text="Mandag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.TirsdagData}" Height="{Binding XakseDag[1].Height}" Width="50"></Button>
+                        <TextBlock Text="Tirsdag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.OnsdagData}" Height="{Binding XakseDag[2].Height}" Width="50"></Button>
+                        <TextBlock Text="Onsdag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.TorsdagData}" Height="{Binding XakseDag[3].Height}" Width="50"></Button>
+                        <TextBlock Text="Torsdag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.FredagData}" Height="{Binding XakseDag[4].Height}" Width="50"></Button>
+                        <TextBlock Text="Fredag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.LørdagData}" Height="{Binding XakseDag[5].Height}" Width="50"></Button>
+                        <TextBlock Text="Lørdag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="0,40,0,0" VerticalAlignment="Bottom">
+                        <Button VerticalAlignment="Bottom" Command="{Binding Hent}" CommandParameter="{Binding Besøgende.SøndagData}" Height="{Binding XakseDag[6].Height}" Width="50"></Button>
+                        <TextBlock Text="Søndag" FontSize="14" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

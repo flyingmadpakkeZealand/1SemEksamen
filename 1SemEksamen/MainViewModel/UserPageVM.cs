@@ -26,6 +26,16 @@ namespace _1SemEksamen.MainViewModel
             }
         }
 
+        public string UserName
+        {
+            get
+            {
+                return MainPageVM.MainPageVmInstance.LoginUser != null
+                    ? MainPageVM.MainPageVmInstance.LoginUser.UserName
+                    : "Guest User";
+            }
+        }
+
         public UserPageVM()
         {
             _menuVisibility = false;

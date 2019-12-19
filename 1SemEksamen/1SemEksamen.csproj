@@ -122,7 +122,9 @@
     <Compile Include="Common\MessageDialogHelper.cs" />
     <Compile Include="Common\PersistencyFacade.cs" />
     <Compile Include="Common\RelayCommand.cs" />
+    <Compile Include="Exceptions\CollectionTooSmallException.cs" />
     <Compile Include="Exceptions\FileNotSavedException.cs" />
+    <Compile Include="Exceptions\WrongOrUnsupportedTypeException.cs" />
     <Compile Include="Magnus\Handler\PianoVMHandler.cs" />
     <Compile Include="Magnus\Model\Chord.cs" />
     <Compile Include="Magnus\Model\Melody.cs" />
@@ -135,6 +137,7 @@
     </Compile>
     <Compile Include="MainModel\Admin.cs" />
     <Compile Include="MainModel\User.cs" />
+    <Compile Include="MainModel\UserCatalogSingleton.cs" />
     <Compile Include="MainViewModel\MainPageVM.cs" />
     <Compile Include="MainViewModel\UserPageVM.cs" />
     <Compile Include="MainView\AdminPage.xaml.cs">
@@ -142,6 +145,9 @@
     </Compile>
     <Compile Include="MainView\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainView\SignUpPage.xaml.cs">
+      <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainView\UserPage.xaml.cs">
       <DependentUpon>UserPage.xaml</DependentUpon>
@@ -238,6 +244,10 @@
     <Page Include="MainView\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MainView\SignUpPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainView\UserPage.xaml">
       <SubType>Designer</SubType>

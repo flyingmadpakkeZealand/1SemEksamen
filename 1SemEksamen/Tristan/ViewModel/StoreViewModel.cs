@@ -93,6 +93,7 @@ namespace _1SemEksamen.Tristan.ViewModel
         {
             await SaveStore(IndkøbskurvSingleton);
             IndkøbskurvSingleton.Indkøbskurv = new ObservableCollection<Valgmulighed>();
+            IndkøbskurvSingleton.Totalprice = 0;
             OnPropertyChanged(nameof(IndkøbskurvSingleton));
         }
 
@@ -105,7 +106,9 @@ namespace _1SemEksamen.Tristan.ViewModel
         public void Nej()
         {
             IndkøbskurvSingleton.Indkøbskurv = new ObservableCollection<Valgmulighed>();
+            IndkøbskurvSingleton.Totalprice = 0;
             OnPropertyChanged(nameof(IndkøbskurvSingleton));
+
         }
 
         //async void SaveStore(StoreIndkøbskurv kvittering)
