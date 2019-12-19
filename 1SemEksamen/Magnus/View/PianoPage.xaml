@@ -37,7 +37,7 @@
             <Grid Style="{StaticResource MainPageGridStyle}" Row="1"></Grid>
             <Image Style="{StaticResource MainPageImageStyle}" Source="../../Assets/RagnaRockLogo.png" Grid.Row="0"/>
         </Grid>
-        <TextBlock Text="{Binding ProgressBarStatus}"/> <!-- Debug loading bar status, should always display 100 in app -->
+         <!-- Debug loading bar status, should always display 100 in app -->
         <StackPanel Spacing="20" HorizontalAlignment="Center" Orientation="Horizontal">
             <StackPanel Spacing="20" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" Text="Click with the mouse or use: 'AWSEDFTGYHUJ' on your keyboard to play music!"/>

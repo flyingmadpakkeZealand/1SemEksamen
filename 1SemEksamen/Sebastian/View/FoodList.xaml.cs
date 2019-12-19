@@ -31,7 +31,7 @@ namespace _1SemEksamen.Sebastian.View
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage));
+            UserPage.TheUserPage.ResetView();
         }
 
         private void ButtonBase_OnClick2(object sender, RoutedEventArgs e)

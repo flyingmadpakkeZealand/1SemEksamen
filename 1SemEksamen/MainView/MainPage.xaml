@@ -22,39 +22,6 @@
         </Grid.RowDefinitions>
         <Grid x:Name="GridStyle" Row="1" Background="BurlyWood"></Grid>
         <Image HorizontalAlignment="Left" Source="../Assets/RagnaRockLogo.png" Grid.Row="0" Margin="20,20,20,20"/>
-        <StackPanel Grid.Row="1" Spacing="10" VerticalAlignment="Center">
-            <!-- Debug StackPanel-->
-            <Button Content="UserPageDebug" Click="Button_Click"/>
-            <Button Content="Billetter" VerticalAlignment="Top">
-                <Custom:Interaction.Behaviors>
-                    <Custom1:EventTriggerBehavior EventName="Click">
-                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Tickets"/>
-                    </Custom1:EventTriggerBehavior>
-                </Custom:Interaction.Behaviors>
-            </Button>
-            <Button Content="Rundvisning" VerticalAlignment="Top">
-                <Custom:Interaction.Behaviors>
-                    <Custom1:EventTriggerBehavior EventName="Click">
-                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Rundvisning"/>
-                    </Custom1:EventTriggerBehavior>
-                </Custom:Interaction.Behaviors>
-            </Button>
-            <Button Content="Statestik" VerticalAlignment="Top">
-                <Custom:Interaction.Behaviors>
-                    <Custom1:EventTriggerBehavior EventName="Click">
-                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.BesøgendeStatestik"/>
-                    </Custom1:EventTriggerBehavior>
-                </Custom:Interaction.Behaviors>
-            </Button>
-            <Button Content="Butik" VerticalAlignment="Top">
-                <Custom:Interaction.Behaviors>
-                    <Custom1:EventTriggerBehavior EventName="Click">
-                        <Custom1:NavigateToPageAction TargetPage="_1SemEksamen.Tristan.View.Store"/>
-                    </Custom1:EventTriggerBehavior>
-                </Custom:Interaction.Behaviors>
-            </Button>
-            <Button Content ="Mad" Click="ButtonBase_OnClick" Width="50" Height="50"/>
-        </StackPanel>
 
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,20,0,0">
             <Border Background="GhostWhite" BorderBrush="Black" BorderThickness="2" Padding="10,10,10,10">
