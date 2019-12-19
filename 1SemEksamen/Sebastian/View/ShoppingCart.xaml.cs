@@ -24,9 +24,12 @@ namespace _1SemEksamen.Sebastian.View
     /// </summary>
     public sealed partial class ShoppingCart : Page
     {
+
+
         public ShoppingCart()
         {
             this.InitializeComponent();
+            
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
@@ -47,8 +50,13 @@ namespace _1SemEksamen.Sebastian.View
 
         private void IsPaneOpen(object sender, RoutedEventArgs e)
         {
-            MySplitView.IsPaneOpen = true;
             
-        }
+            
+                MySplitView.IsPaneOpen = ViewModel.ShoppingCartVM.CartIsNotEmptyStatic();
+
+
+
+
+    }
     }
 }

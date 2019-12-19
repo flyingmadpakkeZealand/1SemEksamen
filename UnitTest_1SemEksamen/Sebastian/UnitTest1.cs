@@ -9,6 +9,10 @@ namespace UnitTest_1SemEksamen.Sebastian
         [TestMethod]
         public void TestMethod1()
         {
+            //arrange
+
+            //act
+            //assert
         }
     }
 }
