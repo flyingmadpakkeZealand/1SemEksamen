@@ -173,7 +173,7 @@
     </Compile>
     <Compile Include="Tristan\Model\BesoegendeStatestik.cs" />
     <Compile Include="Tristan\Model\RundvisningSingleton.cs" />
-    <Compile Include="Tristan\Model\StoreIndkøbskurv.cs" />
+    <Compile Include="Tristan\Model\StoreIndkobskurv.cs" />
     <Compile Include="Tristan\Model\StoreSingleton.cs" />
     <Compile Include="Tristan\Model\Valgmuligheder.cs" />
     <Compile Include="Tristan\Model\Tickets.cs" />
@@ -183,8 +183,8 @@
     <Compile Include="Tristan\ViewModel\StoreViewModel.cs" />
     <Compile Include="Tristan\ViewModel\TestClass.cs" />
     <Compile Include="Tristan\ViewModel\TicketViewModel.cs" />
-    <Compile Include="Tristan\View\BesoegendeStatestik.xaml.cs">
-      <DependentUpon>BesoegendeStatestik.xaml</DependentUpon>
+    <Compile Include="Tristan\View\BesogendeStatestik.xaml.cs">
+      <DependentUpon>BesogendeStatestik.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tristan\View\Rundvisning.xaml.cs">
       <DependentUpon>Rundvisning.xaml</DependentUpon>
@@ -253,7 +253,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Tristan\View\BesoegendeStatestik.xaml">
+    <Page Include="Tristan\View\BesogendeStatestik.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

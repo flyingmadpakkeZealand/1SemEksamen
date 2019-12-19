@@ -10,7 +10,7 @@ using _1SemEksamen.Annotations;
 
 namespace _1SemEksamen.Tristan.Model
 {
-    public class StoreIndkøbskurv:INotifyPropertyChanged
+    public class StoreIndkobskurv:INotifyPropertyChanged
     {
         public ObservableCollection<Valgmulighed> Indkøbskurv { get; set; }
 
@@ -23,14 +23,14 @@ namespace _1SemEksamen.Tristan.Model
         }
 
 
-        private static StoreIndkøbskurv _instance = new StoreIndkøbskurv();
+        private static StoreIndkobskurv _instance = new StoreIndkobskurv();
 
-        public static StoreIndkøbskurv Instance
+        public static StoreIndkobskurv Instance
         {
             get { return _instance; }
         }
 
-        private StoreIndkøbskurv()
+        private StoreIndkobskurv()
         {
             Indkøbskurv = new ObservableCollection<Valgmulighed>();
         }

@@ -19,7 +19,7 @@ namespace _1SemEksamen.Tristan.ViewModel
 {
     public class StoreViewModel:INotifyPropertyChanged
     {
-        private StoreIndkøbskurv _indkøbskurv;
+        private StoreIndkobskurv _indkøbskurv;
         private StoreSingleton _store;
         private Valgmulighed _valgtValgmulighed;
         private ICommand _addCommand;
@@ -27,7 +27,7 @@ namespace _1SemEksamen.Tristan.ViewModel
         private ICommand _nejCommand;
 
         private static string jsonFileName = "Kvitteringer.dat";
-        public StoreIndkøbskurv IndkøbskurvSingleton
+        public StoreIndkobskurv IndkøbskurvSingleton
         {
             get { return _indkøbskurv; }
             set { _indkøbskurv = value; }
@@ -69,7 +69,7 @@ namespace _1SemEksamen.Tristan.ViewModel
 
         public StoreViewModel()
         {
-            _indkøbskurv = StoreIndkøbskurv.Instance;
+            _indkøbskurv = StoreIndkobskurv.Instance;
             _store = StoreSingleton.Instance;
             _addCommand = new RelayCommand(Add, VareErValgt);
             _jaCommand = new RelayCommand(Ja);
@@ -97,7 +97,7 @@ namespace _1SemEksamen.Tristan.ViewModel
             OnPropertyChanged(nameof(IndkøbskurvSingleton));
         }
 
-        public async Task SaveStore(StoreIndkøbskurv kviteringer)
+        public async Task SaveStore(StoreIndkobskurv kviteringer)
         {
             await PersistencyFacade.SaveObjectsAsync(kviteringer, ProgramSaveFiles.Kvitteringer,SaveMode.Continuous);
         }

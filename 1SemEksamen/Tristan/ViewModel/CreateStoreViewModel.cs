@@ -16,7 +16,7 @@ namespace _1SemEksamen.Tristan.ViewModel
         
         public StoreSingleton VarerSingleton { get; set; }
 
-        public StoreIndkøbskurv VarerIndkøbskurv { get; set; }
+        public StoreIndkobskurv VarerIndkøbskurv { get; set; }
 
         public CreateStoreViewModel()
         {
