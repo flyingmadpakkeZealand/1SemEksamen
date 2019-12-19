@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -66,14 +67,47 @@ namespace _1SemEksamen.Sebastian.ViewModel
         public string CreditCardNumber
         {
             get { return _creditCardNumber; }
-            set { _creditCardNumber = value; }
+            set
+            {
+                if (!TryParseToLong(value))
+                {
+                    MessageDialogHelper.Show("Kreditkort nummer må kun indeholde tal", "Ugyldigt input");
+                    ((RelayCommand)_payCommand).RaiseCanExecuteChanged();
+                }
+                else if (value.Length < 16)
+                {
+                    MessageDialogHelper.Show("Kreditkort nummer er for kort. Prøv igen.", "For kort Kortnummer");
+                    ((RelayCommand)_payCommand).RaiseCanExecuteChanged();
+                }
+                else
+                {
+                    _creditCardNumber = value; OnPropertyChanged(); ((RelayCommand)_payCommand).RaiseCanExecuteChanged();
+                }
+            }
         }
         private string _cvvNumber;
 
         public string CvvNumber
         {
             get { return _cvvNumber; }
-            set { _cvvNumber = value; }
+            set {
+                if (!TryParseToLong(value))
+                {
+                    MessageDialogHelper.Show("CVV nummer må kun indeholde tal", "Ugyldigt input");
+                    ((RelayCommand)_payCommand).RaiseCanExecuteChanged();
+                }
+                else if (value.Length < 3)
+                {
+                    MessageDialogHelper.Show("CVV nummer er for kort. Prøv igen.", "For kort CVVnummer");
+                    ((RelayCommand)_payCommand).RaiseCanExecuteChanged();
+                }
+                else
+                {
+                    _cvvNumber = value; OnPropertyChanged(); ((RelayCommand)_payCommand).RaiseCanExecuteChanged();
+                }
+               
+                
+            }
         }
         private string _buyerName;
 
@@ -101,23 +135,16 @@ namespace _1SemEksamen.Sebastian.ViewModel
 
 
 
-
-
-
-
-
-
-
-
         public ShoppingCart ShoppingCart { get; set; }
 
         public ShoppingCartVM()
         { 
             ShoppingCart = ShoppingCart.Instance;
-            _removeItemCommand = new RelayCommand(RemoveItem, CartIsNotEmpty);
+            _removeItemCommand = new RelayCommand(RemoveItem, ItemIsSelected);
             _removeAllCommand = new RelayCommand(RemoveAll, CartIsNotEmpty);
-            _payCommand = new RelayCommand(Pay, CartIsNotEmpty);
+            _payCommand = new RelayCommand(Pay, CartIsNotEmptyAndBuyerInfoCorrect);
             UpdateTotalPrice();
+            
         }
 
 
@@ -133,6 +160,8 @@ namespace _1SemEksamen.Sebastian.ViewModel
 
 
 
+
+
         //func
         public bool ItemIsSelected()
         {
@@ -142,19 +171,65 @@ namespace _1SemEksamen.Sebastian.ViewModel
 
         public bool CartIsNotEmpty()
         {
-            return ShoppingCart != null;
+            return ShoppingCart.Cart.Count > 0;
+        }
+        public static bool CartIsNotEmptyStatic()
+        {
+            return ShoppingCart.Instance.Cart.Count > 0;
         }
 
-        public bool AlwaysTrue()
+        public bool CartIsNotEmptyAndBuyerInfoCorrect()
         {
-            return true;
+
+            return CartIsNotEmpty() && TryParseToLong(CvvNumber) && TryParseToLong(CreditCardNumber);
         }
+
+
+        /* Forsøg på SplitviewPane manipulation
+       static bool booltest = false;
+
+       public static bool BoolTest
+       {
+           get { return booltest;}
+           set { booltest = value; }
+       }
+
+       public static bool ExceptionThrown()
+        {
+            
+            if (booltest == false)
+            {
+                booltest = true;
+            }
+            else 
+            {
+                booltest = false;
+            }
+
+            return booltest;
+
+        }                                       */
+
+        public bool TryParseToLong(string incomingString)
+        {
+           return long.TryParse(incomingString, out long number);
+        }
+        
+
+        public void ErrorMessage(FormatException e)
+        {
+            // forsøg på pane manipulation
+            // ExceptionThrown();
+            MessageDialogHelper.Show(e.Message, "wrong format");
+            
+        }
+        
 
         //Actions
         public void RemoveItem()
         {
-            ShoppingCart.RemoveItem(_selectedIndex);
             ShoppingCart.NewTotalPrice(_selectedItem.Price);
+            ShoppingCart.RemoveItem(_selectedIndex);
             UpdateTotalPrice();
         }
         
@@ -168,31 +243,11 @@ namespace _1SemEksamen.Sebastian.ViewModel
             }
         }
 
+
+        
+
         public void Pay()
         {
-            /* forsøg på at parse til int fra string mangler exception handling
-            try
-            {
-                int CreditCardNumberInt = Int32.Parse(CreditCardNumber);
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-                return;
-            }
-            try
-            {
-                int cvvNumberInt = Int32.Parse(CvvNumber);
-            }
-            catch (FormatException e)
-            {
-                Console.WriteLine(e.Message);
-                return;
-            }
-            
-
-            */
-
             //lav kvittering og afslut køb
 
             UpdateTotalPrice();
@@ -209,6 +264,7 @@ namespace _1SemEksamen.Sebastian.ViewModel
             OnPropertyChanged(nameof(Receipt));
             RemoveAll();
             
+
         }
 
 
