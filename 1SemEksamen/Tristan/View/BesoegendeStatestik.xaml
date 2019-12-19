@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.DataContext>
-        <viewModel:BesøgendeStatestikViewModel></viewModel:BesøgendeStatestikViewModel>
+        <viewModel:BesoegendeStatestikViewModel></viewModel:BesoegendeStatestikViewModel>
     </Page.DataContext>
     <Grid Background="BurlyWood">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">

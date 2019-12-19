@@ -13,7 +13,7 @@ using _1SemEksamen.Tristan.Model;
 
 namespace _1SemEksamen.Tristan.ViewModel
 {
-    class BesøgendeStatestikViewModel:INotifyPropertyChanged
+    class BesoegendeStatestikViewModel:INotifyPropertyChanged
     {
         public List<YakseKasser> YakseTimer { get; set; }
 
@@ -107,7 +107,7 @@ namespace _1SemEksamen.Tristan.ViewModel
             set { HøjesteTalTimer = value; }
         }
 
-        public BesøgendeStatestikViewModel()
+        public BesoegendeStatestikViewModel()
         {
             Besøgende = new BesoegendeStatestik();
             _hent=new RelayCommand(HentXakse);
