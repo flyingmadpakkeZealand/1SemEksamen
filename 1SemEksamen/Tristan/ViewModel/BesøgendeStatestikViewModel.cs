@@ -22,7 +22,7 @@ namespace _1SemEksamen.Tristan.ViewModel
         public List<YakseBokseDag> XakseDag { get; set; }
         public List<YakseBokseTimer> XakseTimer { get; set; }
 
-        public BesøgendeStatestik Besøgende { get; set; }
+        public BesoegendeStatestik Besøgende { get; set; }
 
         int HøjesteTalTimer = 0;
         int HøjesteTalDage = 0;
@@ -109,7 +109,7 @@ namespace _1SemEksamen.Tristan.ViewModel
 
         public BesøgendeStatestikViewModel()
         {
-            Besøgende = new BesøgendeStatestik();
+            Besøgende = new BesoegendeStatestik();
             _hent=new RelayCommand(HentXakse);
             XakseTimer = new List<YakseBokseTimer>();
             XakseTimer.Add(new YakseBokseTimer(Convert.ToInt32(Besøgende.MandagData[0].Højde*GangeFaktorTimer)));

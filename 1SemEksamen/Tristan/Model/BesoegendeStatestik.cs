@@ -9,7 +9,7 @@ using _1SemEksamen.Annotations;
 
 namespace _1SemEksamen.Tristan.Model
 {
-    class BesøgendeStatestik
+    class BesoegendeStatestik
     {
         public ObservableCollection<YakseKasser> Yakse { get; set; }
 
@@ -24,7 +24,7 @@ namespace _1SemEksamen.Tristan.Model
 
 
         public ObservableCollection<Højder> UgeData { get; set; }
-        public BesøgendeStatestik()
+        public BesoegendeStatestik()
         {
             MandagData = new ObservableCollection<Højder>();
             MandagData.Add(new Højder(10));
